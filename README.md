@@ -110,4 +110,14 @@ mkdir Contexts
 
 dotnet ef migrations add InitialCreate --startup-project ..\..\presentation\Librarian.WebApi
 dotnet ef database update --startup-project ..\..\presentation\Librarian.WebApi
+
+# MediatR, DependencyInjection ve Log paketlerinin eklenmesi
+cd ..
+cd ..
+cd core
+cd Librarian.Application
+dotnet add package MediatR
+dotnet add package MediatR.Extensions.Microsoft.DependencyInjection
+dotnet add package Microsoft.Extensions.Logging.Abstractions
 ```
+
