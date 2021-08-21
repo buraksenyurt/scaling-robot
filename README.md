@@ -79,3 +79,10 @@ dotnet sln add src/presentation/Librarian.WebApi/Librarian.WebApi.csproj
 - __presentation__
   - Librarian.WebApi _(Application, Data ve Shared projelerini kullanır)_
 
+```bash
+cd src
+cd core
+cd Librarian.Domain
+mkdir Entities
+mkdir Enums
+```
