@@ -80,9 +80,34 @@ dotnet sln add src/presentation/Librarian.WebApi/Librarian.WebApi.csproj
   - Librarian.WebApi _(Application, Data ve Shared projelerini kullanır)_
 
 ```bash
+# Domain projesine entity ve enum tipleri ekleniyor
 cd src
 cd core
 cd Librarian.Domain
 mkdir Entities
 mkdir Enums
+cd ..
+cd ..
+
+# Entity Framework için gerekli hazırlıklar
+
+dotnet tool install --global dotnet-ef
+
+cd presentation
+cd Librarian.WebApi
+
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+cd ..
+cd ..
+cd infrastructure
+cd Librarian.Data
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+
+mkdir Contexts
+
+# Sqlite veri tabanı için migration operasyonları
+
+dotnet ef migrations add InitialCreate --startup-project ..\..\presentation\Librarian.WebApi
+dotnet ef database update --startup-project ..\..\presentation\Librarian.WebApi
 ```
