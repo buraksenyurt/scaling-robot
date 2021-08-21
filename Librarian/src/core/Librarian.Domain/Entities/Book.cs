@@ -7,6 +7,7 @@ namespace Librarian.Domain.Entities
         public int Id { get; set; }
         public string Title { get; set; }
         public string Authors { get; set; }
+        public string Publisher { get; set; }
         public Status Status { get; set; }
         public Language Language { get; set; }
         public byte Row { get; set; }
