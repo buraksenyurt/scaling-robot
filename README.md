@@ -1,12 +1,25 @@
-# scaling-robot (Bir Clean Architecture Macerası)
+# Scaling-Robot (Bir Clean Architecture Macerası)
 
 Clean Architecture'ın basit uygulamalı bir örneğini yapmaya çalışacağım. Asp.Net Core üstünde ilerlemeyi düşünüyorum. .Net 5 tabanlı olmasına özen göstereceğim. Frontend tarafta React veya Vue.Js kullanabilirim. Fikir olarak çok sıradan ama bilindik bir senaryo üstünde ilerleyebilirim. Çalışma odamdaki kitapların sayısı arttı ve hangi kitap hangi rafta bulmakta zorlanıyorum. Kitaplığımı kayıt altına alacağım basit bir uygulama geliştirebilirim. Scaling-Robot isminin kitaplıkla bir ilgisi yok. Github önerdi, hoşuma gitti ;)
+
+__Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, full-stack applications using vue.js 3, Typescript, .NET 5, and Azure, Devlin Basilan Duldulao, Packt__
+
+## Taslak Plan
+
+- [x] Gün 0 - Proje iskeletinin oluşturulması, EF kurulumu ve SQlite migration işleri
+- [x] Gün 1 - MediatR Eklenmesi ve Temel Behavior tipleri ile bazı servis sözleşmelerinin oluşturulması
+- [ ] Gün 2 -
+- [ ] Gün 3 -
+- [ ] Gün 4 -
+- [ ] Gün 5 -
+- [ ] Gün 6 -
+- [ ] Gün 7 -
 
 ## Çalışma Logları
 
 Projede ilerledikçe neler yaptığımı gün bazında kayıt altına almak iyi bir fikir olabilir.
 
-## 21 Ağustos 2021 Cumartesi
+## Gün 0 - Proje iskeletinin oluşturulması, EF kurulumu ve SQlite migration işleri
 
 Core, Infrastructure ve Presentation katmanlarını içeren Solution ağacı ile temel projelerin oluşturulması.
 
@@ -110,7 +123,13 @@ mkdir Contexts
 
 dotnet ef migrations add InitialCreate --startup-project ..\..\presentation\Librarian.WebApi
 dotnet ef database update --startup-project ..\..\presentation\Librarian.WebApi
+```
+## Gün 1 - MediatR Eklenmesi ve Temel Behavior tipleri ile bazı servis sözleşmelerinin oluşturulması
 
+Yavaştan CQRS tarafında önemli görevi olan ve contoller taleplerini doğru command/query nesnelerine yönlendirecek MediatR paketi ile ilgili geliştirmelere başlıyorum.
+MediatR katmanında request,handler,response üçgeninde araya girmemizi sağlayan Behavior türevlerinin nasıl kullanıldığını anlamaya çalışıyorum. Talebin ömrü belli bir sınırın üstündeyse uyarı logu atan bir tanesi, çeşitli doğrulama kriterlerini yakalayıp ihlaller için exception toplayan bir diğeri vs
+
+```bash
 # MediatR, DependencyInjection ve Log paketlerinin eklenmesi
 cd ..
 cd ..
@@ -119,5 +138,46 @@ cd Librarian.Application
 dotnet add package MediatR
 dotnet add package MediatR.Extensions.Microsoft.DependencyInjection
 dotnet add package Microsoft.Extensions.Logging.Abstractions
+mkdir Common
+cd Common
+mkdir Behaviors
 ```
+
+- MediatR üstünden kullanılabilecek farklı davranışlar eklendi. Özellikle request ve handler arasına girilen yerlere eklendiler. Loglama, performans ölçücü, exception kovalayıcı, içerik doğrulayıcı.
+- Mesaj doğrulama kısmında çalışacak ValidationBehavior davranışı için FluentValidation paketi eklendi
+- Doğrulama ihlalleri için Common altına Exception klasörü açılıp ValidationException sınıfı eklendi. 
+
+```bash
+dotnet add package FluentValidation
+
+# Uygulama katmanında EF için bir sözleşme ekleyeceğiz. Öncesinde EF Core paketini
+# Librarian.Application projesine ekliyoruz
+dotnet add package Microsoft.EntityFrameworkCore
+```
+
+Librarian.Application içindeki Common altına Interfaces isimli bir klasör oluşturup içine EF sözleşmesini eklendi. Burada uygulama seviyesindeki hizmetler için servis sözleşmelerini toplayabiliriz. Örneğin email gönderme hizmeti.
+
+EmailService sözleşmesi mail gönderme işini üstlenirken mail bilgisi için Dtos/Email klasöründeki EmailDto sınıfını kullanıyor. Bu nedenle,
+
+```bash
+# Librarian.Application projesinde iken aşağıdaki klasör yapısı oluşturuldu.
+mkdir Dtos
+cd Dtos
+mkdir Email
+
+# Sonrasında önce EmailDto isimli Data Transfer Object sınıfı, sonrasında IEmailServise sözleşme sınıfı yazıldı.
+```
+
+## Gün 2 - 
+
+## Gün 3 -
+
+## Gün 4 -
+
+## Gün 5 -
+
+## Gün 6 -
+
+## Gün 7 -
+
 
