@@ -8,7 +8,7 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 
 - [x] Gün 0 - Proje iskeletinin oluşturulması, EF kurulumu ve SQlite migration işleri
 - [x] Gün 1 - MediatR Eklenmesi ve Temel Behavior tipleri ile bazı servis sözleşmelerinin oluşturulması
-- [ ] Gün 2 -
+- [ ] Gün 2 - AutoMapper ve CSV Export Özelliğinin Kazandırılması
 - [ ] Gün 3 -
 - [ ] Gün 4 -
 - [ ] Gün 5 -
@@ -168,7 +168,32 @@ mkdir Email
 # Sonrasında önce EmailDto isimli Data Transfer Object sınıfı, sonrasında IEmailServise sözleşme sınıfı yazıldı.
 ```
 
-## Gün 2 - 
+## Gün 2 - AutoMapper ve CSV Export Özelliğinin Kazandırılması
+
+Kitap listesinin CSV olarak exprot edilmesini istediğimizi düşünelim. Book'un bazı alanlarını taşıyan ayrı bir nesne, çıktı için bir ViewModel tasarlanıyor. Aralardaki nesneden nesneye dönüşümlerde AutoMapper kullanılıyor.
+
+```bash
+# Librarian.Application projesine AutoMapper paketi eklenir.
+
+dotnet add package AutoMapper
+dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
+```
+
+Bunu takiben Common altına Mappings isimli bir klasör açıldı ve MappingProfile sınıfı ile IMapFrom sözleşmesi eklendi. _(Bunların nereden işe yarayacağını kitabın ilerleyen kısımlarından anlayacağım sanırım)_
+
+```bash
+# Librarian.Application klasöründeyken
+mkdir BookList
+cd BookList
+mkdir Commands
+mkdir Queries
+cd Queries
+mkdir ExportBooks
+mkdir GetBooks
+```
+
+- ExportBooks klasörüne gidildi ve BookRecord ile ExportBooksViewModel isimli sınıflar eklendi. 
+- Ayrıca CSV dosya çıktısı için ICsvBuilder isimli bir servis sözleşmesi Common/Interfaces klasörüne eklendi.
 
 ## Gün 3 -
 
