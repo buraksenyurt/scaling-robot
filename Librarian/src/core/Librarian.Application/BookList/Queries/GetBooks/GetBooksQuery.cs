@@ -31,7 +31,7 @@ namespace Librarian.Application.BookList.Queries.GetBooks
             {
                 BookList=await _context
                     .Books
-                    .ProjectTo<BookListDto>(_mapper.ConfigurationProvider)
+                    .ProjectTo<BookDto>(_mapper.ConfigurationProvider)
                     .OrderBy(b=>b.Title)
                     .ToListAsync(cancellationToken)
             };

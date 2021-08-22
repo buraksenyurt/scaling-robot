@@ -5,6 +5,6 @@ namespace Librarian.Application.BookList.Queries.GetBooks
 {
     public class BooksViewModel
     {
-        public IList<BookListDto> BookList { get; set; }
+        public IList<BookDto> BookList { get; set; }
     }
 }
