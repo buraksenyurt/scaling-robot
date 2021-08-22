@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="BookList\Commands\" />
-    <Folder Include="BookList\Queries\GetBooks\" />
   </ItemGroup>
 
   <PropertyGroup>
