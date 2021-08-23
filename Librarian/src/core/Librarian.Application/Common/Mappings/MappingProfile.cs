@@ -6,6 +6,11 @@ using System.Reflection;
 
 namespace Travel.Application.Common.Mappings
 {
+    /*
+     * Henüz nasıl çalıştığını keşfedemedim ancak Assembly içerisinde IMapFrom arayüzünü uyarlayan sınıfların,
+     * Mapping metodunu çağırdı ve nesneden nesneye dönüşüm işlerini yürüttüğünü düşünüyorum.
+     * 
+     */
     public class MappingProfile : Profile
     {
         public MappingProfile()

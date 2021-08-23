@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace Librarian.Application.Common.Behaviors
 {
+    /*
+     * Pipeline arayüzünden türeyen bu behavior tipi ile Query ve Command'lerin işleyişi sırasında oluşan exception durumlarını loglamaktayız.
+     * Yakalanan Exception akışta ele alınmamış bir exception ise burada yakalamamız kolay olacaktır.
+     * 
+     */
     public class UnhandledExceptionBehavior<TRequest, TResponse>
         : IPipelineBehavior<TRequest, TResponse>
     {

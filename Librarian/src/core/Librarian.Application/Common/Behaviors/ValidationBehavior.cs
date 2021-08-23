@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace Librarian.Application.Common.Behaviors
 {
+    /*
+     * Bir Command çalışıp ekleme, güncelleme gibi işlemler yapıldığı sırada devreye giren doğrulama fonksiyonunu sağlıyoruz.
+     * 
+     * Eğer talebin geldiği komuta bir Validator uygulanmışsa buradaki süreç çalışıp doğrulama ihlalleri toplanacak.
+     * Eğer ihlaller varsa bunu da ValidationException isimli bizim yazdığımı bir nesnede toplayıp sisteme exception basacağız.
+     * Doğal olarak talep işlenmeyecek.
+     */
     public class ValidationBehavior<TRequest, TResponse>
         : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>

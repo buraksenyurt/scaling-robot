@@ -6,6 +6,11 @@ using System.Text;
 
 namespace Librarian.Application.Common.Exceptions
 {
+    /*
+     * 
+     * ValidationBehavior tipi tarafından kullanılan Exception türevidir.
+     * 
+     */
     public class ValidationException
         :Exception
     {

@@ -4,6 +4,18 @@ using Librarian.Domain.Entities;
 
 namespace Librarian.Application.Dtos.Books
 {
+    /*
+     * Bu aslında bir Data Transfer Object tipi.
+     * 
+     * Controller tarafından gelen istekleri ele alan MediatR nesneleri doğrudan Book tipi ile değil de,
+     * Daha az özelliği içeren BookDto tipi ile çalışıyor. Son kullanıcıya da bu içerik verilecek.
+     * 
+     * Genelde Entity tipleri dolaşıma girdiğinde tüm özelliklerini sunmak istemediğimiz senaryolara dahil olabilir.
+     * ViewModel'in bu durumlarda tüm entity nesnesi ile çalışmak yerine gerçekten ihtiyaç duyduğu özellikleri barındıran bir nesne ile çalışması doğru yaklaşımdır.
+     * 
+     * Bu DTO IMapFrom<T> arayüzünü kullanır. Bu kısım aslında AutoMapper'ın ilgilendiği arayüzdür.
+     * IMapFrom içindeki Mapping metodu burada ele alınmış ve Language özelliği için ekstra bir işlem eklenmiştir.
+     */
     public class BookDto
         : IMapFrom<Book>
     {

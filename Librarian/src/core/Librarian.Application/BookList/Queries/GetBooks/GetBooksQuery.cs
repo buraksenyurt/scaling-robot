@@ -10,6 +10,12 @@ using System.Threading.Tasks;
 
 namespace Librarian.Application.BookList.Queries.GetBooks
 {
+    /*
+     * Query ile tüm kitap listesinin çekilmesi sürecini ele alıyoruz.
+     * 
+     * Talebe karşılık BooksViewModel nesnesi dönülüyor ki o da için BookDto tipinden bir liste barındırmakta.
+     * 
+     */
     public class GetBooksQuery
         :IRequest<BooksViewModel>
     {        

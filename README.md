@@ -10,7 +10,7 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 - [x] Gün 1 - MediatR Eklenmesi ve Temel Behavior tipleri ile bazı servis sözleşmelerinin oluşturulması
 - [x] Gün 2 - AutoMapper ve CSV Export Özelliğinin Kazandırılması
 - [x] Gün 3 - İlk Query Tiplerinin(ExportBooksQuery, GetBooksQuery) Yazılması
-- [ ] Gün 4 -
+- [ ] Gün 4 - Kitap Oluşturma, Güncelleme ve Silme operasyonlarına ait Command Nesnelerinin Oluşturulması
 - [ ] Gün 5 -
 - [ ] Gün 6 -
 - [ ] Gün 7 -
@@ -206,7 +206,9 @@ Librarian.Application üstünde ilk Query tipini yazmaya başladım.
 
 QueryHandler tipleri ViewModel nesneleri döndürüyor. Book tipinin tüm özelliklerini döndürmüyoruz veya dönüştürerek döndürdüğümüz özellikleri var. Bu nedenle ViewModel'ler içerisinde DTO nesneleri kullanılıyor. Handler sınıflarının Execute fonksiyonlarında EF Context üstünden gelen Book tipinin Mapper üzerinden ilgili DTO'lara çevrimi söz konusu.
 
-## Gün 4 -
+## Gün 4 - Kitap Oluşturma, Güncelleme ve Silme operasyonlarına ait Command Nesnelerinin Oluşturulması
+
+
 
 ## Gün 5 -
 

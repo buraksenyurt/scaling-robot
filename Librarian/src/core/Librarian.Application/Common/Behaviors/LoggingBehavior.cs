@@ -5,6 +5,12 @@ using System.Threading.Tasks;
 
 namespace Librarian.Application.Common.Behaviors
 {
+    /*
+     * MediatR işleyişinde mesajlar arasına girmek mümkün.
+     * 
+     * Burada mesaj işlenmeden önce araya girip basitçe log atmaktayız. Örnek için olmasa bile öğrenmek için gerekli
+     * 
+     */
     public class LoggingBehavior<TRequest>
         : IRequestPreProcessor<TRequest>
     {

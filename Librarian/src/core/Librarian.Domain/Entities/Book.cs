@@ -2,6 +2,9 @@
 
 namespace Librarian.Domain.Entities
 {
+    /*
+     Kütüphanedeki kitaplarımı temsil edecek entity tipi. 
+     */
     public class Book
     {
         public int Id { get; set; }
