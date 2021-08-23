@@ -10,10 +10,12 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 - [x] Gün 1 - MediatR Eklenmesi ve Temel Behavior tipleri ile bazı servis sözleşmelerinin oluşturulması
 - [x] Gün 2 - AutoMapper ve CSV Export Özelliğinin Kazandırılması
 - [x] Gün 3 - İlk Query Tiplerinin(ExportBooksQuery, GetBooksQuery) Yazılması
-- [ ] Gün 4 - Kitap Oluşturma, Güncelleme ve Silme operasyonlarına ait Command Nesnelerinin Oluşturulması
-- [ ] Gün 5 -
-- [ ] Gün 6 -
-- [ ] Gün 7 -
+- [x] Gün 4 - Kitap Oluşturma, Güncelleme ve Silme operasyonlarına ait Command Nesnelerinin Oluşturulması
+- [ ] Gün 5 - Dependency Injection yürütücü, Mail gönderici ve CSV dosya üretici sınıflarının yazılması.
+- [ ] Gün 6 - Web API Projesindeki Controller'ların Tamamlanması ve Diğer
+- [ ] Gün 7 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
+- [ ] Gün 8 - Cache Yapısının Kurgulanması ve Redis Entegrasyonu
+- [ ] Gün 9 - Genel API Testleri ve Kod Düzeltmeleri
 
 ## Çalışma Logları
 
@@ -218,11 +220,17 @@ mkdir DeleteBook
 
 - Kitap oluşturma işini üstlenen CreateBookCommand ve Handler sınıfı eklendi.
 - Kitap oluşturma işi sırasında doğrulama işini üstlenen CreateBookCommandValidator sınıfı eklendi.
+- Kitap bilgilerini güncelleme işini üstlenen UpdateBookCommand ve Handler sınıfı eklendi.
+- Kitap güncellerken de doğrulama işlemleri gerekiyor. Bunun için de UpdateBookCommandValidator sınıfı ilave edildi.
+- Güncelleme sırasında aranan kitap bulunamadığında ortama BookNotFoundException istisnası fırlatılmak istendiğinden Common/Exceptions altına da bu sınıf eklendi.
+- Envanterden kitap silmek için kullanılacak olan DeleteBookCommand ve Handler tipi eklendi.
 
-## Gün 5 -
+## Gün 5 - Dependency Injection yürütücü, Mail gönderici ve CSV osya üretici sınıflarının yazılması.
 
-## Gün 6 -
+## Gün 6 - Web API Projesindeki Controller'ların Tamamlanması ve Diğer
 
-## Gün 7 -
+## Gün 7 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
 
+## Gün 8 - Cache Yapısının Kurgulanması ve Redis Entegrasyonu
 
+## Gün 9 - Genel API Testleri ve Kod Düzeltmeleri
