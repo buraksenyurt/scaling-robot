@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Librarian.Application.BookList.Queries.GetBooks
+namespace Librarian.Application.Books.Queries.GetBooks
 {
     /*
      * Query ile tüm kitap listesinin çekilmesi sürecini ele alıyoruz.

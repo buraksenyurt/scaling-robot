@@ -1,7 +1,7 @@
 ﻿using Librarian.Application.Common.Mappings;
 using Librarian.Domain.Entities;
 
-namespace Librarian.Application.BookList.Queries.ExportBooks
+namespace Librarian.Application.Books.Queries.ExportBooks
 {
     /*
      * CSV içerisine hangi kitap bilgilerini basacağımızı tutan basit bir tip.

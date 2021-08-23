@@ -1,7 +1,7 @@
 ﻿using Librarian.Application.Dtos.Books;
 using System.Collections.Generic;
 
-namespace Librarian.Application.BookList.Queries.GetBooks
+namespace Librarian.Application.Books.Queries.GetBooks
 {
     /*
      * Kitap listesinin tamamını çeken Query'nin çalıştığı ViewModel nesnesi

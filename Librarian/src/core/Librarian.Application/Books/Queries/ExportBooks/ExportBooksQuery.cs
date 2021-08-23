@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Librarian.Application.BookList.Queries.ExportBooks
+namespace Librarian.Application.Books.Queries.ExportBooks
 {
     /*
      * 

@@ -1,4 +1,4 @@
-﻿using Librarian.Application.BookList.Queries.ExportBooks;
+﻿using Librarian.Application.Books.Queries.ExportBooks;
 using System.Collections.Generic;
 
 namespace Librarian.Application.Common.Interfaces

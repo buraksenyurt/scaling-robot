@@ -1,4 +1,4 @@
-﻿namespace Librarian.Application.BookList.Queries.ExportBooks
+﻿namespace Librarian.Application.Books.Queries.ExportBooks
 {
     /*
      * Kitapların bir çıktısını CSV olarak verdiğimizde kullanılan ViewModel nesnemiz.
