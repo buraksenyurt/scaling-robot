@@ -1,5 +1,6 @@
 ﻿using Librarian.Application.Common.Interfaces;
 using Librarian.Domain.Entities;
+using Librarian.Domain.Enums;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace Librarian.Application.Books.Commands.CreateBook
         public string Publisher { get; set; }
         public byte Row { get; set; }
         public byte Column { get; set; }
+        public Language Language{ get; set; }
     }
 
     public class CreateBookCommandHandler
@@ -40,7 +42,9 @@ namespace Librarian.Application.Books.Commands.CreateBook
                 Authors = request.Authors,
                 Publisher = request.Publisher,
                 Row = request.Row,
-                Column = request.Column
+                Column = request.Column,
+                Language=request.Language,
+                Status=Status.Unread
             };
             _context.Books.Add(b);
             await _context.SaveChangesAsync(cancellationToken);
