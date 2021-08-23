@@ -183,8 +183,8 @@ Bunu takiben Common altına Mappings isimli bir klasör açıldı ve MappingProf
 
 ```bash
 # Librarian.Application klasöründeyken
-mkdir BookList
-cd BookList
+mkdir Books
+cd Books
 mkdir Commands
 mkdir Queries
 cd Queries
@@ -208,7 +208,16 @@ QueryHandler tipleri ViewModel nesneleri döndürüyor. Book tipinin tüm özell
 
 ## Gün 4 - Kitap Oluşturma, Güncelleme ve Silme operasyonlarına ait Command Nesnelerinin Oluşturulması
 
+Bunun için Librarian.Application projesindeki Books/Commands klasöründe çalışacağız. Her komut için birer alt klasör açarak ilerlemek lazım.
 
+```bash
+mkdir CreateBook
+mkdir UpdateBook
+mkdir DeleteBook
+```
+
+- Kitap oluşturma işini üstlenen CreateBookCommand ve Handler sınıfı eklendi.
+- Kitap oluşturma işi sırasında doğrulama işini üstlenen CreateBookCommandValidator sınıfı eklendi.
 
 ## Gün 5 -
 
