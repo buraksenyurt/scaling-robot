@@ -11,7 +11,7 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 - [x] Gün 2 - AutoMapper ve CSV Export Özelliğinin Kazandırılması
 - [x] Gün 3 - İlk Query Tiplerinin(ExportBooksQuery, GetBooksQuery) Yazılması
 - [x] Gün 4 - Kitap Oluşturma, Güncelleme ve Silme operasyonlarına ait Command Nesnelerinin Oluşturulması
-- [ ] Gün 5 - Dependency Injection yürütücü, Mail gönderici ve CSV dosya üretici sınıflarının yazılması.
+- [x] Gün 5 - Dependency Injection yürütücü, Mail gönderici ve CSV dosya üretici sınıflarının yazılması.
 - [ ] Gün 6 - Web API Projesindeki Controller'ların Tamamlanması ve Diğer
 - [ ] Gün 7 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
 - [ ] Gün 8 - Cache Yapısının Kurgulanması ve Redis Entegrasyonu
@@ -151,6 +151,7 @@ mkdir Behaviors
 
 ```bash
 dotnet add package FluentValidation
+FluentValidation.DependencyInjectionExtensions
 
 # Uygulama katmanında EF için bir sözleşme ekleyeceğiz. Öncesinde EF Core paketini
 # Librarian.Application projesine ekliyoruz
@@ -225,7 +226,26 @@ mkdir DeleteBook
 - Güncelleme sırasında aranan kitap bulunamadığında ortama BookNotFoundException istisnası fırlatılmak istendiğinden Common/Exceptions altına da bu sınıf eklendi.
 - Envanterden kitap silmek için kullanılacak olan DeleteBookCommand ve Handler tipi eklendi.
 
-## Gün 5 - Dependency Injection yürütücü, Mail gönderici ve CSV osya üretici sınıflarının yazılması.
+## Gün 5 - Dependency Injection yürütücü, Mail gönderici ve CSV dosya üretici sınıflarının yazılması.
+
+- Librarian.Application projesi için bir dependency injection sınıfı eklendi.
+- Librarian.Shared projesine Services isimli klasör açıldı ve içine CsvBuilder, EmailService sınıfları eklendi. 
+- Mail gönderimi sırasından From ve DisplayName gibi kısımları çalışma zamanının sahibi uygulamadan almamız gerekebilir. Bu nedenle appSettings için MailSettings isimli bir sınıf Librarian.Domain projesindeki Settings klasörü altına eklendi. 
+ 
+CsvBuilder için yardımcı CsvHelper, EmailService içinde MailKit ve MimeKit paketlerini Infrastructure katmanındaki Librarian.Shared projesine
+
+```bash
+dotnet add package CsvHelper
+dotnet add package MailKit
+dotnet add package MimeKit
+
+# tabii birde Dependency Injection tarafı için yine Librarian.Shared projesine aşağıdaki paketi ekliyoruz.
+dotnet add package Microsoft.Extensions.Options.ConfigurationExtensions
+```
+
+Servisler eklendikten sonra pek tabii bunları tüketecek uygulama kimse onun DI servislerine yardımcı olması için aynen Application projesinde olduğu gibi DependencyInjection isimli bir sınıfı Shared projesine de ekliyoruz.
+
+__Bu arada şu ana kadar yazdığımız servisler çalışıyor mu hiç test etmedim. Keşke Unit Test'leri yazark ilerleseydim dediğim noktadayım :|__
 
 ## Gün 6 - Web API Projesindeki Controller'ların Tamamlanması ve Diğer
 
