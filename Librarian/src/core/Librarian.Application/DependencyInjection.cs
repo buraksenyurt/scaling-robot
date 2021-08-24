@@ -17,7 +17,7 @@ namespace Librarian.Application
      */
     public static class DependencyInjection
     {
-        public static IServiceCollection AddApp(this IServiceCollection services)
+        public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
