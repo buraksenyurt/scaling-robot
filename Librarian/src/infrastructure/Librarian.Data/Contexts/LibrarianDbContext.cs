@@ -1,4 +1,5 @@
-﻿using Librarian.Domain.Entities;
+﻿using Librarian.Application.Common.Interfaces;
+using Librarian.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Librarian.Data.Contexts
@@ -8,9 +9,12 @@ namespace Librarian.Data.Contexts
      * 
      * Şimdilik kitapların bir koleksiyonunu tutmakta.
      * 
+     * IApplicationDbContext türetmesine de dikkat edelim. Core.Application katmanındaki sözleşmeyi kullanıyoruz.
+     * Bu DI servislerine Entity Context nesnesini eklerken işimize yarayacak.
+     * 
      */
     public class LibrarianDbContext
-        : DbContext
+        : DbContext, IApplicationDbContext
     {
         public LibrarianDbContext(DbContextOptions<LibrarianDbContext> options)
             : base(options)
