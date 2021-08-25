@@ -1,51 +1,60 @@
-﻿using Librarian.Data.Contexts;
-using Librarian.Domain.Entities;
-using Microsoft.AspNetCore.Http;
+﻿using Librarian.Application.Books.Commands.CreateBook;
+using Librarian.Application.Books.Commands.DeleteBook;
+using Librarian.Application.Books.Commands.UpdateBook;
+using Librarian.Application.Books.Queries.GetBooks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Librarian.WebApi.Controllers
 {
+    /*
+     * BooksController, kitap ekleme, silme, güncelleme ve kitap listesini ViewModel ölçütünde çekme işlemlerini üstleniyor.
+     * 
+     * Constructor üstünden MediatR modülünün enjekte edildiğini görebiliyoruz.
+     * 
+     * Önceki versiyonuna göre en büyük fark elbetteki metotlarda Query/Command nesnelerinin kullanılması.
+     * 
+     * Ayrıca fonksiyon içeriklerine bakıldığında yapılan tek şey Send ile ilgili komutu MeditaR'a yönlendirmek. O gerisini halleder
+     * 
+     */
     [Route("api/[controller]")]
     [ApiController]
     public class BooksController : ControllerBase
     {
-        // CQRS geçişinden sonra aşağıdaki metot kullanımları değişecek.
-
-        private readonly LibrarianDbContext _context;
-        public BooksController(LibrarianDbContext context)
+        private readonly IMediator _mediator;
+        public BooksController(IMediator mediator)
         {
-            _context = context;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<ActionResult<BooksViewModel>> Get()
         {
-            return Ok(_context.Books);
+            return await _mediator.Send(new GetBooksQuery());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]Book book)
-        {            
-            await _context.Books.AddAsync(book);
-            await _context.SaveChangesAsync();
-            return Ok(book);
+        public async Task<ActionResult<int>> Create(CreateBookCommand command)
+        {
+            return await _mediator.Send(command);
         }
 
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> Delete([FromRoute] int id)
-        //{
-        //    return Ok(id);
-        //}
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            await _mediator.Send(new DeleteBookCommand { BookId = id });
+            return NoContent();
+        }
 
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> Update([FromRoute] int id,[FromBody] Book book)
-        //{
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update(int id, UpdateBookCommand command)
+        {
+            if (id != command.BookId)
+                return BadRequest();
+            await _mediator.Send(command);
 
-        //    return Ok(book);
-        //}
+            return NoContent();
+        }
     }
 }
