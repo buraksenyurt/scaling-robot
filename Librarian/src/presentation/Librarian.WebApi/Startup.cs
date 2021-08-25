@@ -1,4 +1,5 @@
 ﻿using Librarian.Application;
+using Librarian.Data;
 using Librarian.Data.Contexts;
 using Librarian.Shared;
 using Microsoft.AspNetCore.Builder;
@@ -24,7 +25,7 @@ namespace Librarian.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             /*
-             * Web API'nin çalışma zamanının ihtiyaç duyacağı Application ve Shared servislerini 
+             * Web API'nin çalışma zamanının ihtiyaç duyacağı Application,Data(Entity Framework context'ini alacak) ve Shared servislerini 
              * aşağıdaki metotlar yardımıyla ekliyoruz.
              * 
              * İlgili servisleri burada da açık bir şekilde ekleyebilirdik ancak yapmadık. 
@@ -33,9 +34,10 @@ namespace Librarian.WebApi
              * 
              */
             services.AddApplication();
+            services.AddData();
             services.AddShared(Configuration);
 
-            services.AddDbContext<LibrarianDbContext>(options => options.UseSqlite("Data Source=LibrarianDatabase.sqlite3"));
+            //services.AddDbContext<LibrarianDbContext>(options => options.UseSqlite("Data Source=LibrarianDatabase.sqlite3"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
