@@ -1,6 +1,7 @@
 ﻿using Librarian.Application.Books.Commands.CreateBook;
 using Librarian.Application.Books.Commands.DeleteBook;
 using Librarian.Application.Books.Commands.UpdateBook;
+using Librarian.Application.Books.Queries.ExportBooks;
 using Librarian.Application.Books.Queries.GetBooks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

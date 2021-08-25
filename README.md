@@ -254,6 +254,7 @@ __Bu arada şu ana kadar yazdığımız servisler çalışıyor mu hiç test etm
 - Mail ayarları için appSettings.json dosyasında MailSettings alanı açıldı ve özellikleri eklendi.
 - Entity Framework Context'inin ele alındığı Infrastructure.Data propjesine de Dependency Injection ayarları için sınıf eklendi.
 - Kısa bir test yapılıp Swagger arabirimi üstünden yeni bir kitap eklenip listesi çekildi.
+- CSV Export işlemi için WebApi tarafına ExportController sınıfı eklendi.
 
 ## Gün 7 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
 
