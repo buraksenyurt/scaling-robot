@@ -12,7 +12,7 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 - [x] Gün 3 - İlk Query Tiplerinin(ExportBooksQuery, GetBooksQuery) Yazılması
 - [x] Gün 4 - Kitap Oluşturma, Güncelleme ve Silme operasyonlarına ait Command Nesnelerinin Oluşturulması
 - [x] Gün 5 - Dependency Injection yürütücü, Mail gönderici ve CSV dosya üretici sınıflarının yazılması.
-- [ ] Gün 6 - Web API Projesindeki Controller'ların Tamamlanması ve Diğer
+- [x] Gün 6 - Web API Projesindeki Controller'ların Tamamlanması ve Diğer
 - [ ] Gün 7 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
 - [ ] Gün 8 - Cache Yapısının Kurgulanması ve Redis Entegrasyonu
 - [ ] Gün 9 - Genel API Testleri ve Kod Düzeltmeleri
@@ -248,6 +248,12 @@ Servisler eklendikten sonra pek tabii bunları tüketecek uygulama kimse onun DI
 __Bu arada şu ana kadar yazdığımız servisler çalışıyor mu hiç test etmedim. Keşke Unit Test'leri yazark ilerleseydim dediğim noktadayım :|__
 
 ## Gün 6 - Web API Projesindeki Controller'ların Tamamlanması ve Diğer
+
+- Presentation katmanındaki Librarian.WebApi projesinde bulunan BooksController sınıfı, MediatR ve doğal olarak CQRS kullanır hale getirildi.
+- Startup.cs içerisinde Core katmanındaki Application ve ve Infrastructure katmanındaki Shared kütüphanelerinde tanımladığımız Dependency Injection metotları konuşlandırıldı.
+- Mail ayarları için appSettings.json dosyasında MailSettings alanı açıldı ve özellikleri eklendi.
+- Entity Framework Context'inin ele alındığı Infrastructure.Data propjesine de Dependency Injection ayarları için sınıf eklendi.
+- Kısa bir test yapılıp Swagger arabirimi üstünden yeni bir kitap eklenip listesi çekildi.
 
 ## Gün 7 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
 
