@@ -1,4 +1,6 @@
+﻿using Librarian.Application;
 using Librarian.Data.Contexts;
+using Librarian.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +23,18 @@ namespace Librarian.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /*
+             * Web API'nin çalışma zamanının ihtiyaç duyacağı Application ve Shared servislerini 
+             * aşağıdaki metotlar yardımıyla ekliyoruz.
+             * 
+             * İlgili servisleri burada da açık bir şekilde ekleyebilirdik ancak yapmadık. 
+             * Bu sayede o kütüphanelerin servislerinin DI koleksiyonuna eklenme işini buradan soyutlamış olduk.
+             * Orada servislerde bir değişiklik olursa buraya gelip bir şeyler yapmamıza gerek kalmayacak.
+             * 
+             */
+            services.AddApplication();
+            services.AddShared(Configuration);
+
             services.AddDbContext<LibrarianDbContext>(options => options.UseSqlite("Data Source=LibrarianDatabase.sqlite3"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
