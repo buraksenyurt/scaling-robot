@@ -18,9 +18,9 @@ namespace Librarian.Application.Common.Behaviors
     public class PerformanceBehavior<TRequest, TResponse>
         : IPipelineBehavior<TRequest, TResponse>
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<TRequest> _logger;
         private readonly Stopwatch _hgwells;
-        public PerformanceBehavior(ILogger logger)
+        public PerformanceBehavior(ILogger<TRequest> logger)
         {
             _logger = logger;
             _hgwells = new Stopwatch();

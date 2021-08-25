@@ -14,8 +14,8 @@ namespace Librarian.Application.Common.Behaviors
     public class UnhandledExceptionBehavior<TRequest, TResponse>
         : IPipelineBehavior<TRequest, TResponse>
     {
-        private readonly ILogger _logger;
-        public UnhandledExceptionBehavior(ILogger logger)
+        private readonly ILogger<TRequest> _logger;
+        public UnhandledExceptionBehavior(ILogger<TRequest> logger)
         {
             _logger = logger;
         }

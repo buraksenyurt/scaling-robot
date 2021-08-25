@@ -14,8 +14,8 @@ namespace Librarian.Application.Common.Behaviors
     public class LoggingBehavior<TRequest>
         : IRequestPreProcessor<TRequest>
     {
-        private readonly ILogger _logger;
-        public LoggingBehavior(ILogger logger)
+        private readonly ILogger<TRequest> _logger;
+        public LoggingBehavior(ILogger<TRequest> logger)
         {
             _logger = logger;
         }
