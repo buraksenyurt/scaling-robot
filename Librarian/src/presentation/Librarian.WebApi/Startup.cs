@@ -33,7 +33,7 @@ namespace Librarian.WebApi
              * Orada servislerde bir değişiklik olursa buraya gelip bir şeyler yapmamıza gerek kalmayacak.
              * 
              */
-            services.AddApplication();
+            services.AddApplication(Configuration);
             services.AddData();
             services.AddShared(Configuration);
 

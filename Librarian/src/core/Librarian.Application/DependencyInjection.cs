@@ -2,6 +2,7 @@
 using Librarian.Application.Common.Behaviors;
 using MediatR;
 using MediatR.Pipeline;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -17,11 +18,18 @@ namespace Librarian.Application
      */
     public static class DependencyInjection
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services)
+        public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Redis entegrasyonu. Servis adresi çalıştıran uygulamanın appSettings kısmından alınacağı için metoda IConfiguration arayüzü de eklendi.
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = configuration.GetConnectionString("RedisServer");
+                options.InstanceName = Assembly.GetExecutingAssembly().GetName().Name;
+            });
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
             services.AddTransient(typeof(IRequestPreProcessor<>), typeof(LoggingBehavior<>));
