@@ -34,7 +34,7 @@ namespace Librarian.WebApi
              * 
              */
             services.AddApplication(Configuration);
-            services.AddData();
+            services.AddData(Configuration);
             services.AddShared(Configuration);
 
             //services.AddDbContext<LibrarianDbContext>(options => options.UseSqlite("Data Source=LibrarianDatabase.sqlite3"));

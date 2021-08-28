@@ -1,6 +1,7 @@
 ﻿using Librarian.Application.Common.Interfaces;
 using Librarian.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Librarian.Data
@@ -14,10 +15,10 @@ namespace Librarian.Data
      */
     public static class DependencyInjection
     {
-        public static IServiceCollection AddData(this IServiceCollection services)
+        public static IServiceCollection AddData(this IServiceCollection services,IConfiguration configuration)
         {
             services.AddDbContext<LibrarianDbContext>(
-                options => options.UseSqlite("Data Source=LibrarianDatabase.sqlite3")
+                options => options.UseSqlite(configuration.GetConnectionString("LibrarianDbConnection")) // SQLite veri tabanı bağlantı bilgisi konfigurasyon üstünden gelecek. Web API' nin appSettings.json dosyasından
                 );
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<LibrarianDbContext>());
