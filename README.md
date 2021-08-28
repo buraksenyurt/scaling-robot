@@ -13,7 +13,7 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 - [x] Gün 4 - Kitap Oluşturma, Güncelleme ve Silme operasyonlarına ait Command Nesnelerinin Oluşturulması
 - [x] Gün 5 - Dependency Injection yürütücü, Mail gönderici ve CSV dosya üretici sınıflarının yazılması.
 - [x] Gün 6 - Web API Projesindeki Controller'ların Tamamlanması ve Diğer
-- [ ] Gün 7 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
+- [x] Gün 7 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
 - [ ] Gün 8 - Cache Yapısının Kurgulanması ve Redis Entegrasyonu
 - [ ] Gün 9 - Genel API Testleri ve Kod Düzeltmeleri
 
@@ -257,6 +257,25 @@ __Bu arada şu ana kadar yazdığımız servisler çalışıyor mu hiç test etm
 - CSV Export işlemi için WebApi tarafına ExportController sınıfı eklendi.
 
 ## Gün 7 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
+
+Logları yapısal (structured) tutmak için Web API tarafında ekler yapıldı.
+
+```bash
+# Gerekli Nuget paketleri yüklenir
+dotnet add package Serilog.AspNetCore
+dotnet add package Serilog.Settings.Configuration
+dotnet add package Serilog.Exceptions
+dotnet add package Serilog.Formatting.Compact
+dotnet add package Serilog.Enrichers.Environment
+dotnet add package Serilog.Enrichers.Process
+dotnet add package Serilog.Enrichers.Thread
+dotnet add package Serilog.Sinks.File
+dotnet add package Serilog.Sinks.SQLite
+```
+
+- Librarian.WebApi, Program.cs içerisindeki Main metoduna loglama için gerekli kodlar eklendi.
+
+Log mekanizması eklendikten sonra uygulamayı çalıştırıp Swagger ile birkaç test yapıldığında Logs klasör altındaki SQLite ve JSON dosya içeriklerinin log kayıtları ile doldurulduğunun görülmesi lazım.
 
 ## Gün 8 - Cache Yapısının Kurgulanması ve Redis Entegrasyonu
 
