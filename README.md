@@ -6,16 +6,17 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 
 ## Taslak Plan
 
-- [x] Gün 0 - Proje iskeletinin oluşturulması, EF kurulumu ve SQlite migration işleri
-- [x] Gün 1 - MediatR Eklenmesi ve Temel Behavior tipleri ile bazı servis sözleşmelerinin oluşturulması
-- [x] Gün 2 - AutoMapper ve CSV Export Özelliğinin Kazandırılması
-- [x] Gün 3 - İlk Query Tiplerinin(ExportBooksQuery, GetBooksQuery) Yazılması
-- [x] Gün 4 - Kitap Oluşturma, Güncelleme ve Silme operasyonlarına ait Command Nesnelerinin Oluşturulması
-- [x] Gün 5 - Dependency Injection yürütücü, Mail gönderici ve CSV dosya üretici sınıflarının yazılması.
-- [x] Gün 6 - Web API Projesindeki Controller'ların Tamamlanması ve Diğer
-- [x] Gün 7 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
-- [ ] Gün 8 - Cache Yapısının Kurgulanması ve Redis Entegrasyonu
-- [ ] Gün 9 - Genel API Testleri ve Kod Düzeltmeleri
+- [x] Gün 00 - Proje iskeletinin oluşturulması, EF kurulumu ve SQlite migration işleri
+- [x] Gün 01 - MediatR Eklenmesi ve Temel Behavior tipleri ile bazı servis sözleşmelerinin oluşturulması
+- [x] Gün 02 - AutoMapper ve CSV Export Özelliğinin Kazandırılması
+- [x] Gün 03 - İlk Query Tiplerinin(ExportBooksQuery, GetBooksQuery) Yazılması
+- [x] Gün 04 - Kitap Oluşturma, Güncelleme ve Silme operasyonlarına ait Command Nesnelerinin Oluşturulması
+- [x] Gün 05 - Dependency Injection yürütücü, Mail gönderici ve CSV dosya üretici sınıflarının yazılması.
+- [x] Gün 06 - Web API Projesindeki Controller'ların Tamamlanması ve Diğer
+- [x] Gün 07 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
+- [x] Gün 08 - Cache Yapısının Kurgulanması ve Redis Entegrasyonu
+- [ ] Gün 09 - JWT Bazlı Güvenlik Politikasının Eklenmesi
+- [ ] Gün 10 - Önyüz Uygulamasının Vue.js ile Geliştirilmesi
 
 ## Çalışma Logları
 
@@ -256,6 +257,14 @@ __Bu arada şu ana kadar yazdığımız servisler çalışıyor mu hiç test etm
 - Kısa bir test yapılıp Swagger arabirimi üstünden yeni bir kitap eklenip listesi çekildi.
 - CSV Export işlemi için WebApi tarafına ExportController sınıfı eklendi.
 
+Sonrasında uygulamayı çalıştırıp Swagger arabirimi üstünden birkaç test yapılabilir. Birkaç kitap eklenip listesi çekilmeye çalışışabilir.
+
+![./Assets/screenshot_2.png](./Assets/screenshot_2.png)
+
+![./Assets/screenshot_3.png](./Assets/screenshot_3.png)
+
+![./Assets/screenshot_5.png](./Assets/screenshot_5.png)
+
 ## Gün 7 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
 
 Logları yapısal (structured) tutmak için Web API tarafında ekler yapıldı.
@@ -277,6 +286,36 @@ dotnet add package Serilog.Sinks.SQLite
 
 Log mekanizması eklendikten sonra uygulamayı çalıştırıp Swagger ile birkaç test yapıldığında Logs klasör altındaki SQLite ve JSON dosya içeriklerinin log kayıtları ile doldurulduğunun görülmesi lazım.
 
+![./Assets/screenshot_4.png](./Assets/screenshot_4.png)
+
 ## Gün 8 - Cache Yapısının Kurgulanması ve Redis Entegrasyonu
+
+In-Memory cache yerine kitabın da anlattığı üzere dağıtık cache sistemlerinden redis'i kullanmayı tercih ettim. Sistem redis kurmayacağım ancak docker imajından yararlanabilirm.
+
+```bash
+docker run --name izmir -p 6379:6379 -d redis
+
+#Container'ı çalıştırdıktan sonra Docker Desktop üstünden terminal ekranını açıp izleyen komutu vermekte yarar var.
+redis-cli ping
+
+# Bize PONG cevabı dönmeli
+
+# Core katmanındaki Librarian.Application projesine redis kullanımı için gerekli Nuget paketleri yüklenir.
+dotnet add package Microsoft.Extensions.Caching.StackExchangeRedis
+dotnet add package Microsoft.Extensions.Configuration
+
+# Cache için JSON serileştirmesi kullanabiliriz
+dotnet add package Newtonsoft.Json
+```
+
+- Redis servislerinin DI tarafına dahil edilmesi için Librarian.Application projesindeki DependencyInjection sınıfında gerekli düzenlemeler yapıldı.
+- Web Api projesinin appSettings.json dosyasına Redis sunucu adresi eklendi.
+- Core katmanındaki Librarian.Application projesindeki GetBooksQueryHandler sınıfında cache stratejisi uygulandı.
+
+Redis ayarları yapıldıktan sonra uygulamayı debug modda çalıştırıp incelemekte yarar var. İlk seferinde kitap listesini veri tabanından çekmeli, sonrakinde ise(belirlenen süre politikasına göre tabii) içeriği redis cache üstünden getirmeli.
+
+__Kitap Redis içeriğini [Another Redis Desktop Manager](https://github.com/qishibo/AnotherRedisDesktopManager) isimli programla görebileceğimizi belirtmişti. Bende indirip denedim ve kullanışlı bir arabirimi olduğunu gördüm__
+
+![./Assets/screenshot_1.png](./Assets/screenshot_1.png)
 
 ## Gün 9 - Genel API Testleri ve Kod Düzeltmeleri
