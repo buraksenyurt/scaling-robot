@@ -318,4 +318,37 @@ __Kitap Redis içeriğini [Another Redis Desktop Manager](https://github.com/qis
 
 ![./Assets/screenshot_1.png](./Assets/screenshot_1.png)
 
-## Gün 9 - Genel API Testleri ve Kod Düzeltmeleri
+## Gün 09 - JWT Bazlı Güvenlik Politikasının Eklenmesi
+
+Web Api tarafı için Token tabanlı bir doğrulama sistemi_(Token Based Authentication)_ eklemeye başladım. Servisleri kullanabilmek için talep gönderen tarafın geçerli bir token ile gelmesi gerekecek. Dolayısıyla önce kendini tanıtıp geçerli bir kullanıcı ise token almalı ve servis çağrısı yaparken bu token'ı header'a bearer tipte ekleyerek talepte bulunmalı. Bu sayede servislerimize yetkisiz erişimleri engellemiş olacağız.
+
+```bash
+
+# Infrastructure katmanına Librarian.Identity isimli Class Library eklendi.
+cd infrastructure
+dotnet new classlib -f net5.0 --name Librarian.Identity
+
+cd ..
+cd ..
+dotnet sln add src\infrastructure\Librarian.Identity\Librarian.Identity.csproj
+
+# Librarian.Idendity projesine Librarian.Application referans edilir
+dotnet add reference ..\..\core\Librarian.Application\Librarian.Application.csproj
+
+# Librarian.WebApi projesine Librarian.Identity projesi referans edilir.
+dotnet add reference ..\..\infrastructure\Librarian.Identity\Librarian.Identity.csproj
+
+# Librarian.Identity projesinde gerekli olan Nuget paketleri eklenir
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add package Microsoft.AspNetCore.Authentication.OpenIdConnect
+```
+
+Sonrasında;
+
+- Librarian.Domain projesine User sınıfı eklendi.
+- Librarian.Application projesinde Dtos altına User klasörü açılıp AuthenticationRequest ve AuthenticationResponse sınıfları eklendi.
+- Librarian.Application projesinde Common/Interfaces altına IUserService sözleşemesi eklendi.
+- Librarian.Identity projesine AuthenticationSettings, JwtHandler, AuthorizeAttribute, UserService ve tabii ki DependencyInjection sınıfları ilave edildi.
+- _DEVAM EDECEK_
+
+## Gün 10 - Önyüz Uygulamasının Vue.js ile Geliştirilmesi
