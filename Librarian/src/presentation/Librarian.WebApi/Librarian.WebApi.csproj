@@ -25,6 +25,7 @@
     <ProjectReference Include="..\..\core\Librarian.Application\Librarian.Application.csproj" />
     <ProjectReference Include="..\..\infrastructure\Librarian.Data\Librarian.Data.csproj" />
     <ProjectReference Include="..\..\infrastructure\Librarian.Shared\Librarian.Shared.csproj" />
+    <ProjectReference Include="..\..\infrastructure\Librarian.Identity\Librarian.Identity.csproj" />
   </ItemGroup>
 
 </Project>
