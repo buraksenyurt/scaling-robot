@@ -15,7 +15,7 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 - [x] Gün 06 - Web API Projesindeki Controller'ların Tamamlanması ve Diğer
 - [x] Gün 07 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
 - [x] Gün 08 - Cache Yapısının Kurgulanması ve Redis Entegrasyonu
-- [ ] Gün 09 - JWT Bazlı Güvenlik Politikasının Eklenmesi
+- [x] Gün 09 - JWT Bazlı Güvenlik Politikasının Eklenmesi
 - [ ] Gün 10 - Önyüz Uygulamasının Vue.js ile Geliştirilmesi
 
 ## Çalışma Logları
@@ -349,6 +349,35 @@ Sonrasında;
 - Librarian.Application projesinde Dtos altına User klasörü açılıp AuthenticationRequest ve AuthenticationResponse sınıfları eklendi.
 - Librarian.Application projesinde Common/Interfaces altına IUserService sözleşemesi eklendi.
 - Librarian.Identity projesine AuthenticationSettings, JwtHandler, AuthorizeAttribute, UserService ve tabii ki DependencyInjection sınıfları ilave edildi.
-- _DEVAM EDECEK_
+- Librarian.WebApi projesine UserController isimli controller eklendi.
+
+Gerekli geliştirmeler sonrası token almadan bir talep denersek aşağıdaki gibi HTTP 401 hatası alırız.
+
+![./Assets/screenshot_6.png](./Assets/screenshot_6.png)
+
+Swagger üstündeki denemelerde Token'ı talep içerisine eklemek için arabirime bir yardımcı eklenmiş. Bunun için Web API startup içindeki Swagger generator eklenen kısımda ilaveler söz konusu. Ayrıca JWT tarafını ele alan tipide Middleware katmanına ekledik. Buna göre uygulama tekrar çalıştırıldığında yetkilendirme ihtiyacı olan hizmetlerin kolayca kullanabilmesi için bir button çıktığını görmeliyiz.
+
+![./Assets/screenshot_7.png](./Assets/screenshot_7.png)
+
+Testler için Önce auth talebi ile geçerli bir token alınır ve sonrasında Authorize butonuna basarak gelen iletişim penceresine ilgili token girilerek servis çağrısı gerçekleştirilir. Denemelerden birkaç görüntü.
+
+Token alma kısmı;
+![./Assets/screenshot_8.png](./Assets/screenshot_8.png)
+
+Authorize penceresinde token girme;
+![./Assets/screenshot_9.png](./Assets/screenshot_9.png)
+
+![./Assets/screenshot_10.png](./Assets/screenshot_10.png)
+
+Token ile birlikte bir talep gönderme;
+
+![./Assets/screenshot_11.png](./Assets/screenshot_11.png)
+
+Testleri postman aracıyla da yapabiliriz elbette.
+
+![./Assets/screenshot_12.png](./Assets/screenshot_12.png)
+
+![./Assets/screenshot_13.png](./Assets/screenshot_13.png)
 
 ## Gün 10 - Önyüz Uygulamasının Vue.js ile Geliştirilmesi
+
