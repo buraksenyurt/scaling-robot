@@ -1,8 +1,8 @@
 ﻿using Librarian.Application.Books.Commands.CreateBook;
 using Librarian.Application.Books.Commands.DeleteBook;
 using Librarian.Application.Books.Commands.UpdateBook;
-using Librarian.Application.Books.Queries.ExportBooks;
 using Librarian.Application.Books.Queries.GetBooks;
+using Librarian.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -19,6 +19,7 @@ namespace Librarian.WebApi.Controllers
      * Ayrıca fonksiyon içeriklerine bakıldığında yapılan tek şey Send ile ilgili komutu MeditaR'a yönlendirmek. O gerisini halleder
      * 
      */
+    [Authorize] // Artı bu controller'a gelen talepler yetkiye tabi olacak
     [Route("api/[controller]")]
     [ApiController]
     public class BooksController : ControllerBase

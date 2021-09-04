@@ -1,6 +1,7 @@
 ﻿using Librarian.Application;
 using Librarian.Data;
 using Librarian.Data.Contexts;
+using Librarian.Identity;
 using Librarian.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,7 +27,7 @@ namespace Librarian.WebApi
         {
             /*
              * Web API'nin çalışma zamanının ihtiyaç duyacağı Application,Data(Entity Framework context'ini alacak) ve Shared servislerini 
-             * aşağıdaki metotlar yardımıyla ekliyoruz.
+             * aşağıdaki metotlar yardımıyla ekliyoruz. Hatta JWT bazlı yetkilendirme ile kullanıcı doğrulama için Identity...
              * 
              * İlgili servisleri burada da açık bir şekilde ekleyebilirdik ancak yapmadık. 
              * Bu sayede o kütüphanelerin servislerinin DI koleksiyonuna eklenme işini buradan soyutlamış olduk.
@@ -35,6 +36,7 @@ namespace Librarian.WebApi
              */
             services.AddApplication(Configuration);
             services.AddData(Configuration);
+            services.AddAppIdentity(Configuration);
             services.AddShared(Configuration);
 
             //services.AddDbContext<LibrarianDbContext>(options => options.UseSqlite("Data Source=LibrarianDatabase.sqlite3"));

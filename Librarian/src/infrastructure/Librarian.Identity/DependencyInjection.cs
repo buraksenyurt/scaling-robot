@@ -6,7 +6,7 @@ namespace Librarian.Identity
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddIdentity(this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddAppIdentity(this IServiceCollection services, IConfiguration config)
         {
             services.Configure<AuthenticationSettings>(config.GetSection(nameof(AuthenticationSettings)));
             services.AddScoped<IUserService, UserService>();
