@@ -1,4 +1,12 @@
 <template>
+<!--
+    Menüyü oluşturuyoruz.
+    Lobi yazan kısım bir button şeklinde ve root adrese yönlendiriyor.
+
+    Bilgi linkine bastığımızda router bunu /about bileşenine yönlendiriyor.
+
+    Envanter Yönetimi dashboard klasörüne yönlendirme yapacak ve oradaki index.vue bileşenine göre şekillenecek.
+    -->
   <v-app-bar app color="primary" light>
     <div>
       <v-btn color="primary" outlined :to="{ path: '/' }">

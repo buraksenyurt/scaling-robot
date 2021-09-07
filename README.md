@@ -398,6 +398,13 @@ vue create librarian-app
 # In dedicated config files seçili bırakılır
 
 # Material Design yaklaşımına uygun olarak vuetify kütüphanesi eklendi
-# librarian-app klasöründeyken
+# librarian-app klasöründeyken aşağıdaki komut çalıştırılır
 vue add vuetify
+
+# Default(recommended) ile ilerlenir
+# Aşağıdaki komut ile vue tarafının çalıştığından emin olunur
+npm run serve
 ```
+
+- librarian-vue projesinin src dizini altındaki components içersine NavigationBar.vue bileşeni eklendi
+- Buna bağlı olarak navigasyon çubuğu kontrolü app.vue bileşenine monte edildi.

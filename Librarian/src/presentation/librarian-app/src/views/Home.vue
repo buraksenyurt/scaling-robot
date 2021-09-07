@@ -1,15 +1,11 @@
 <template>
-  <hello-world />
+  <div class="home fill-height d-flex justify-center align-center">
+    <h1>Canım Kitaplığım :P</h1>
+  </div>
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld";
-
 export default {
   name: "Home",
-
-  components: {
-    HelloWorld,
-  },
 };
 </script>

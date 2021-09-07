@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <NavigationBar />
+    <NavigationBar /> <!-- Vue bileşenlere(component) dayalı çalışır. src/components altında tasarladığımız NavigationBar bileşeni buraya gelecektir. Sayfanın üst kısmında yatay bir menü çubuğu olarak-->
     <v-main>
       <router-view />
     </v-main>
