@@ -381,3 +381,23 @@ Testleri postman aracıyla da yapabiliriz elbette.
 
 ## Gün 10 - Önyüz Uygulamasının Vue.js ile Geliştirilmesi
 
+Kitaplığıma ait envanteri yöneten servis tarafı ve Clean Architecture çatısı hazır. Şimdi önyüz tarafını geliştirmeye başlıyorum. Kitap Vue üstünden ilerliyor. Windows tabanlı sistemime bunun için gerekli node.js ve npm paketlerini yükledikten sonra aşağıdaki komutla vue uygulamaları oluşturmak için gerekli şablonu kuruyorum.
+
+```bash
+npm install -g @vue/cli
+
+# Presentation klasörü altındayken vue projesi oluşturulur
+vue create librarian-app
+
+# > Manually select features
+# İzleyen kısımda yapılacak seçimler (Choose Vue Version, Babel, Router, Vuex, Linter/Formatter)
+# Version olarak 2.x seçilir ki 3.x ile denemek lazım
+# Use history mode for router sorusuna Y(Yes) cevabı verilir
+# Ardından ESLint + Prettier seçilir
+# List on save seçili bırakılır
+# In dedicated config files seçili bırakılır
+
+# Material Design yaklaşımına uygun olarak vuetify kütüphanesi eklendi
+# librarian-app klasöründeyken
+vue add vuetify
+```
