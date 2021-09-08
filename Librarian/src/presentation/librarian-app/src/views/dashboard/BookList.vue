@@ -35,7 +35,6 @@
 
 <script>
 import { getBooksAxios } from "@/api/book-service";
-import { mapActions, mapGetters } from "vuex";
 export default {
   name: "BookList",
   async mounted() {
@@ -50,7 +49,6 @@ export default {
     };
   },
   methods: {
-    ...mapActions("bookModule", ["getBooksAction"]),
     async getBooksAxios() {
       this.loading = true;
       try {
@@ -79,11 +77,6 @@ export default {
       }
     },
   },
-
-  computed: {
-    ...mapGetters("bookModule", {
-      lists: "lists",
-    }),
-  },
+  
 };
 </script>
