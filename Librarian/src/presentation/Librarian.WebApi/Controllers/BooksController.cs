@@ -19,7 +19,7 @@ namespace Librarian.WebApi.Controllers
      * Ayrıca fonksiyon içeriklerine bakıldığında yapılan tek şey Send ile ilgili komutu MeditaR'a yönlendirmek. O gerisini halleder
      * 
      */
-    [Authorize] // Artı bu controller'a gelen talepler yetkiye tabi olacak
+    //[Authorize] // Artı bu controller'a gelen talepler yetkiye tabi olacak
     [Route("api/[controller]")]
     [ApiController]
     public class BooksController : ControllerBase
