@@ -16,7 +16,7 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 - [x] Gün 07 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
 - [x] Gün 08 - Cache Yapısının Kurgulanması ve Redis Entegrasyonu
 - [x] Gün 09 - JWT Bazlı Güvenlik Politikasının Eklenmesi
-- [ ] Gün 10 - Önyüz Uygulamasının Vue.js ile Geliştirilmesi
+- [ ] Gün 10 --> Ne Zaman Biterse (Önyüz Uygulamasının Vue.js ile Geliştirilmesi)
 
 ## Çalışma Logları
 
@@ -379,7 +379,7 @@ Testleri postman aracıyla da yapabiliriz elbette.
 
 ![./Assets/screenshot_13.png](./Assets/screenshot_13.png)
 
-## Gün 10 - Önyüz Uygulamasının Vue.js ile Geliştirilmesi
+## Gün 10 --> Ne Zaman Biterse (Önyüz Uygulamasının Vue.js ile Geliştirilmesi)
 
 Kitaplığıma ait envanteri yöneten servis tarafı ve Clean Architecture çatısı hazır. Şimdi önyüz tarafını geliştirmeye başlıyorum. Kitap Vue üstünden ilerliyor. Windows tabanlı sistemime bunun için gerekli node.js ve npm paketlerini yükledikten sonra aşağıdaki komutla vue uygulamaları oluşturmak için gerekli şablonu kuruyorum.
 
@@ -406,7 +406,7 @@ vue add vuetify
 npm run serve
 ```
 
-___Vue tarafını kodlamak için Visual Studio Code kullanacağız___
+___Vue tarafını kodlamak için Visual Studio Code kullanabiliriz___
 
 - librarian-vue projesinin src dizini altındaki components içersine NavigationBar.vue bileşeni eklendi
 - Buna bağlı olarak navigasyon çubuğu kontrolü app.vue bileşenine monte edildi.
@@ -422,5 +422,18 @@ dotnet add package VueCliMiddleware
 Proje dosyasında ve Startup içerisinde yapılan değişiklikler sonrası Web API projesi başlatıldığında _npm run serve_ komutunun da otomatik çalıştırıldığı, gerekli node build işlemlerinin yapıldığı ve localhost:5001 adresinden vue arayüzüne ulaşıldığı görülebilir.
 
 ![./Assets/screenshot_14.png](./Assets/screenshot_14.png)
+
+Vue uygulamasının web api tarafı ile iletişiminde axios paketinden yararlanılmakta. Bunun için librarian-app klasöründe iken npm paketi kurulur.
+
+```bash
+npm i axios
+```
+
+- Axios nesnesini ayağa kaldırması için src altında api isimli klasör açıldı ve içine api-config.js ile book-service.js dosyaları eklendi.
+- BookList isimli vue bileşeninin içeriği servis çağıracak ve kitapların listesini getirecek şekilde değiştirildi.
+
+Bu noktada web api tarafını _dotnet run_ ile çalıştırabiliriz. Öncesinde BooksController'ın Authorize niteliğini kapatmamız gerekecektir nitekim vue tarafına henüz token based bir authentication mekanizması ekli değil. Sonrasında aşağıdakine benzer bir ekran görüntüsü elde etme şansımız var. 
+
+![./Assets/screenshot_15.png](./Assets/screenshot_15.png)
 
 ___Devam Edecek___
