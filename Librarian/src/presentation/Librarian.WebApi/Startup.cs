@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
+using VueCliMiddleware;
 
 namespace Librarian.WebApi
 {
@@ -39,6 +40,12 @@ namespace Librarian.WebApi
             services.AddData(Configuration);
             services.AddAppIdentity(Configuration);
             services.AddShared(Configuration);
+
+            // SPA için eklendi
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "../librarian-app/dist";
+            });
 
             //services.AddDbContext<LibrarianDbContext>(options => options.UseSqlite("Data Source=LibrarianDatabase.sqlite3"));
             services.AddControllers();
@@ -80,6 +87,12 @@ namespace Librarian.WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Librarian.WebApi v1"));
             }
 
+            app.UseStaticFiles();
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -91,6 +104,16 @@ namespace Librarian.WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "../librarian-app";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseVueCli(npmScript: "serve"); // npm run server komutunu tetikler
+                }
             });
         }
     }
