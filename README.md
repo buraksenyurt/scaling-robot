@@ -412,3 +412,15 @@ ___Vue tarafını kodlamak için Visual Studio Code kullanacağız___
 - Buna bağlı olarak navigasyon çubuğu kontrolü app.vue bileşenine monte edildi.
 - Home ve About bileşenlerinin içerikleri düzenlendi.
 - Views altında Dashboard isimli klasör açıldı ve içine BookList.vue, DefaultContent.vue ile index.vue bileşenleri eklendi. Ayrıca yeni sayfaların yönlendirme ayarlamaları için router klasöründeki index.js içinde bazı düzenlemeler yapıldı.
+
+Vue tarafı ile Web API tarafının Single Page Application şablonu olarak tek birim halinde kullanmak için birtakım hazırlıklar yapılır. Burada VueCliMiddleware isimli Nuget paketinden de yararlanılır.
+
+```bash
+dotnet add package VueCliMiddleware
+```
+
+Proje dosyasında ve Startup içerisinde yapılan değişiklikler sonrası Web API projesi başlatıldığında _npm run serve_ komutunun da otomatik çalıştırıldığı, gerekli node build işlemlerinin yapıldığı ve localhost:5001 adresinden vue arayüzüne ulaşıldığı görülebilir.
+
+![./Assets/screenshot_14.png](./Assets/screenshot_14.png)
+
+___Devam Edecek___
