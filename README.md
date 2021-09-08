@@ -406,5 +406,9 @@ vue add vuetify
 npm run serve
 ```
 
+___Vue tarafını kodlamak için Visual Studio Code kullanacağız___
+
 - librarian-vue projesinin src dizini altındaki components içersine NavigationBar.vue bileşeni eklendi
 - Buna bağlı olarak navigasyon çubuğu kontrolü app.vue bileşenine monte edildi.
+- Home ve About bileşenlerinin içerikleri düzenlendi.
+- Views altında Dashboard isimli klasör açıldı ve içine BookList.vue, DefaultContent.vue ile index.vue bileşenleri eklendi. Ayrıca yeni sayfaların yönlendirme ayarlamaları için router klasöründeki index.js içinde bazı düzenlemeler yapıldı.
