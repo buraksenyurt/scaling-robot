@@ -34,13 +34,13 @@
 </template>
 
 <script>
-import { getBooksAxios } from "@/api/book-service";
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "BookList",
   async mounted() {
-    this.loading = true;
-    await this.getBooksAxios();
-    this.loading = false;
+    await this.getBooksAction();
+    this.books = this.lists.map((pl) => pl);
   },
   data() {
     return {
@@ -49,20 +49,7 @@ export default {
     };
   },
   methods: {
-    async getBooksAxios() {
-      this.loading = true;
-      try {
-        const { data } = await getBooksAxios();
-        //console.log(data);
-        //console.log(this.books);
-        this.books = data.bookList;
-      } catch (e) {
-        console.log(e);
-        alert("Sanırım uçuş sistemleri çalışmıyor. Düşüyoruzzzz!!!");
-      } finally {
-        this.loading = false;
-      }
-    },
+    ...mapActions("bookModule", ["getBooksAction"]),
 
     getLang(language) {
       switch (language) {
@@ -77,6 +64,56 @@ export default {
       }
     },
   },
-  
+  computed: {
+    ...mapGetters("bookModule", {
+      lists: "lists",
+    }),
+  },
 };
+
+// import { getBooksAxios } from "@/api/book-service";
+// export default {
+//   name: "BookList",
+//   async mounted() {
+//     this.loading = true;
+//     await this.getBooksAxios();
+//     this.loading = false;
+//   },
+//   data() {
+//     return {
+//       books: [],
+//       loading: false,
+//     };
+//   },
+//   methods: {
+//     async getBooksAxios() {
+//       this.loading = true;
+//       try {
+//         const { data } = await getBooksAxios();
+//         //console.log(data);
+//         //console.log(this.books);
+//         this.books = data.bookList;
+//       } catch (e) {
+//         console.log(e);
+//         alert("Sanırım uçuş sistemleri çalışmıyor. Düşüyoruzzzz!!!");
+//       } finally {
+//         this.loading = false;
+//       }
+//     },
+
+//     getLang(language) {
+//       switch (language) {
+//         case 0:
+//           return "İngilizce";
+//         case 1:
+//           return "Türkçe";
+//         case 2:
+//           return "İspanyolca";
+//         default:
+//           return "Bilemedim";
+//       }
+//     },
+//   },
+
+// };
 </script>
