@@ -436,4 +436,15 @@ Bu noktada web api tarafını _dotnet run_ ile çalıştırabiliriz. Öncesinde 
 
 ![./Assets/screenshot_15.png](./Assets/screenshot_15.png)
 
+Önemli konulardan biriside state yönetimi. Nesne durumlarını kullanmak isteyen ortak bileşenler olduğunda bunu store mekanizması üstünden yönetebiliyoruz. Vuex yapısı da işi oldukça kolaylaştırıyor.
+
+- store klasörü zaten var. Altında book isimli bir dizin açıldı.
+- book klasörü altına services, action-types, actions, state, getters, index javascript dosyaları eklendi.
+- store klasöründeki index.js içeriği değiştirildi.
+- views\dashboard altındaki BookList.vue içeriği değiştirildi.
+
+İşler yolunda gitti ve aşağıdaki sonuçları almaya başardım.
+
+![./Assets/screenshot_16.png](./Assets/screenshot_16.png)
+
 ___Devam Edecek___
