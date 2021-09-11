@@ -447,4 +447,22 @@ Bu noktada web api tarafını _dotnet run_ ile çalıştırabiliriz. Öncesinde 
 
 ![./Assets/screenshot_16.png](./Assets/screenshot_16.png)
 
+Sırada Delete işlemi için yapılacaklar var.
+
+- store/book/services.js'e listeden kitap silmek için kullanacağımız delete fonksiyonu eklendi.
+- action-types.js'e DELETE_BOOK değeri eklendi.
+- action.js'e silme işlemi için removeBookAction fonksiyonu eklendi.
+- mutations REMOVE_BOOK action için güncellendi. 
+- BookList.vue bileşenine silme fonksiyonu eklendi.
+- components altına BookListCard isimli vue bileşeni eklendi.
+- dashboard altındaki DefaultContent içeriği değiştirildi ve BookListCard bileşeni kullanılır hale getirildi.
+
+Bu işlemler sonrası Dashboard...
+
+![./Assets/screenshot_17.png](./Assets/screenshot_17.png)
+
+![./Assets/screenshot_18.png](./Assets/screenshot_18.png)
+
+![./Assets/screenshot_19.png](./Assets/screenshot_19.png)
+
 ___Devam Edecek___
