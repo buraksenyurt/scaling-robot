@@ -40,11 +40,11 @@ export default {
   name: "BookList",
   async mounted() {
     await this.getBooksAction();
-    this.books = this.lists.map((pl) => pl);
+    this.bookList = this.books.map((pl) => pl);
   },
   data() {
     return {
-      books: [],
+      bookList: [],
       loading: false,
     };
   },
@@ -66,7 +66,7 @@ export default {
   },
   computed: {
     ...mapGetters("bookModule", {
-      lists: "lists",
+      books: "books",
     }),
   },
 };
