@@ -23,7 +23,7 @@
         <tbody>
           <tr v-for="b in books" :key="b.id">
             <td>{{ b.title }}</td>
-            <td>{{ b.athors }}</td>
+            <td>{{ b.authors }}</td>
             <td>{{ b.publisher }}</td>
             <td>{{ getLang(b.language) }}</td>
           </tr>
