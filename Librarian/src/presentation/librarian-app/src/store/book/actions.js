@@ -1,5 +1,5 @@
 import * as actionTypes from "./action-types";
-import { getBooks } from "@/store/book/services";
+import { getBooks, deleteBook } from "@/store/book/services";
 
 export async function getBooksAction({ commit }) {
     // Kitapların yüklendiğine dair bir durum bildiriyor
@@ -14,5 +14,19 @@ export async function getBooksAction({ commit }) {
         console.log(e);
     }
     // kitapların yüklenme durumu sona erdiği için false ile bir durum bilgilendirilmesi yapılıyor
+    commit(actionTypes.LOADING_BOOKS, false);
+}
+
+// Listeden kitap çıkarmak için kullanılan fonksiyon
+export async function removeBookAction({ commit }, payload) {
+    commit(actionTypes.LOADING_BOOKS, true);
+
+    try {
+        await deleteBook(payload);
+        commit(actionTypes.REMOVE_BOOK, payload);
+    } catch (e) {
+        console.log(e);
+    }
+
     commit(actionTypes.LOADING_BOOKS, false);
 }

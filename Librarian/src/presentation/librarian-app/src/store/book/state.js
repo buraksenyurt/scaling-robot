@@ -1,5 +1,5 @@
 const state = {
-    lists: [],
+    books: [],
     loading: false
   };
   

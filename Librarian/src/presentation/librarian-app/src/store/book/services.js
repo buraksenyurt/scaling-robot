@@ -1,8 +1,12 @@
 import api from "@/api/api-config";
 
 /*
-    aslında api-config içerisindeki ayarları kullanarak books controller'ına bir talep gönderen fonksiyon içeriyor
+   api-config üstünden api tarafında CRUD taleplerini gönderen fonksiyonları içerir
 */
 export async function getBooks() {
   return await api.get("books");
+}
+
+export async function deleteBook(id) {
+  return await api.delete("books/" + id);
 }
