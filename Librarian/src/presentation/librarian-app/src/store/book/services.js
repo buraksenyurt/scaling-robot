@@ -10,3 +10,7 @@ export async function getBooks() {
 export async function deleteBook(id) {
   return await api.delete("books/" + id);
 }
+
+export async function addBook(newBook) {
+    return await api.post("books", newBook);
+}

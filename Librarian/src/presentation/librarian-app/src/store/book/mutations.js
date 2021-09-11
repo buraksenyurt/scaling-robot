@@ -12,6 +12,10 @@ const mutations = {
     [actionTypes.REMOVE_BOOK](state, id) {
         state.books = state.books.filter((tl) => tl.id !== id);
     },
+
+    [actionTypes.ADD_BOOK](state, newBook) {
+        state.books.unshift(newBook);
+    }
 };
 
 export default mutations;
