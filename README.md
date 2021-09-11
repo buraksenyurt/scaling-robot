@@ -465,4 +465,15 @@ Bu işlemler sonrası Dashboard...
 
 ![./Assets/screenshot_19.png](./Assets/screenshot_19.png)
 
+Şimdi yeni kitap eklemek için neler yaptığımıza bakalım.
+
+- store/book altındaki services.js'e Post çağrısı yapan fonksiyon eklendi.
+- action-types olarak yeni bir sabit eklendi.
+- actions.js içerisine kitap ekleme aksiyonu ilave edildi.
+- mutations.js kitap ekleme aksiyonu için güncellendi.
+- components klasörüne AddBookForm.vue bileşeni eklendi.
+- Kitap ekleme işini üstlenen bileşen DefaultContent sayfasına dahil edildi.
+
+![./Assets/screenshot_20.png](./Assets/screenshot_20.png)
+
 ___Devam Edecek___
