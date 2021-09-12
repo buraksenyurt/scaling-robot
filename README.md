@@ -16,7 +16,11 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 - [x] Gün 07 - Serilog Entegrasyonu ve Yapısal Log'lamaya Geçiş
 - [x] Gün 08 - Cache Yapısının Kurgulanması ve Redis Entegrasyonu
 - [x] Gün 09 - JWT Bazlı Güvenlik Politikasının Eklenmesi
-- [ ] Gün 10 --> Ne Zaman Biterse (Önyüz Uygulamasının Vue.js ile Geliştirilmesi)
+- [x] Gün 10 - Önyüz Uygulamasının Vue.js ile Geliştirilmesi
+- [ ] Gün 11 - Vue Tarafında Authentication Mekanizmasının Uygulanması
+- [ ] Gün 12 - Validation Kontrollerinin Eklenmesi
+- [ ] Gün 13 - Unit Test ile Entegrasyon Testlerinin Yazılması
+- [ ] Gün 14 - Deployment
 
 ## Çalışma Logları
 
@@ -87,14 +91,19 @@ dotnet sln add src/presentation/Librarian.WebApi/Librarian.WebApi.csproj
 İskelet kabaca şöyle;
 
 - __core__
-  - Librarian.Application _(Domain projesini kullanır)_
   - Librarian.Domain
+  - Librarian.Application _(Domain projesini kullanır)_
 - __infrastructure__
   - Librarian.Data _(Application ve Domain projelerini kullanır)_
+  - Librarian.Identity _(Application projesini kullanır)_
   - Librarian.Shared _(Application projesini kullanır)_
 - __presentation__
-  - Librarian.WebApi _(Application, Data ve Shared projelerini kullanır)_
+  - Librarian.WebApi _(Application, Identity, Data ve Shared projelerini kullanır)_
   - librarian-app _(Vue.js uygulamasıdır ve WebApi projesi ile Single Page Application bütünlüğü içinde çalışır)_
+
+Kabaca aşağıdaki gibi bir şeyler ortaya çıkacak gibi duruyor.
+
+![./Assets/screenshot_21.png](./Assets/screenshot_21.png)
 
 ```bash
 # Domain projesine entity ve enum tipleri ekleniyor
@@ -380,7 +389,7 @@ Testleri postman aracıyla da yapabiliriz elbette.
 
 ![./Assets/screenshot_13.png](./Assets/screenshot_13.png)
 
-## Gün 10 --> Ne Zaman Biterse (Önyüz Uygulamasının Vue.js ile Geliştirilmesi)
+## Gün 10 - Önyüz Uygulamasının Vue.js ile Geliştirilmesi
 
 Kitaplığıma ait envanteri yöneten servis tarafı ve Clean Architecture çatısı hazır. Şimdi önyüz tarafını geliştirmeye başlıyorum. Kitap Vue üstünden ilerliyor. Windows tabanlı sistemime bunun için gerekli node.js ve npm paketlerini yükledikten sonra aşağıdaki komutla vue uygulamaları oluşturmak için gerekli şablonu kuruyorum.
 
@@ -477,4 +486,10 @@ Bu işlemler sonrası Dashboard...
 
 ![./Assets/screenshot_20.png](./Assets/screenshot_20.png)
 
-___Devam Edecek___
+## Gün 11 - Vue Tarafında Authentication Mekanizmasının Uygulanması
+
+## Gün 12 - Validation Kontrollerinin Eklenmesi
+
+## Gün 13 - Unit Test ile Entegrasyon Testlerinin Yazılması
+
+## Gün 14 - Deployment
