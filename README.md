@@ -94,6 +94,7 @@ dotnet sln add src/presentation/Librarian.WebApi/Librarian.WebApi.csproj
   - Librarian.Shared _(Application projesini kullanır)_
 - __presentation__
   - Librarian.WebApi _(Application, Data ve Shared projelerini kullanır)_
+  - librarian-app _(Vue.js uygulamasıdır ve WebApi projesi ile Single Page Application bütünlüğü içinde çalışır)_
 
 ```bash
 # Domain projesine entity ve enum tipleri ekleniyor
