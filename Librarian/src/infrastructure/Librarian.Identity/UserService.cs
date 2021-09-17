@@ -27,6 +27,7 @@ namespace Librarian.Identity
                 UserId = 1,
                 Name = "Jan Claud",
                 LastName = "Van Damme",
+                Email="vandam@kilot.com",
                 Username = "onlyVan",
                 Password = "P@ssw0rd"
             }

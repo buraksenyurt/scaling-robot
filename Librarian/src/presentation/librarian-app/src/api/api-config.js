@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { patrol } from "@/api/madMax";
 const debug = process.env.NODE_ENV !== "production";
 
 /*
@@ -10,5 +10,6 @@ const baseURL = debug
   : "https://mylibrary.somewhere/api";
 
 let api = axios.create({ baseURL });
+api = patrol(api);
 
 export default api;

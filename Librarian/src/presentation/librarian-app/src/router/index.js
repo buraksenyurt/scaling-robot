@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import BookList from "@/views/dashboard/BookList";
 import { agentScally } from "@/auth/bodyguard";
-import { isLocalStorageTokenValid } from "@/auth/authService";
 
 Vue.use(VueRouter);
 
@@ -18,9 +17,9 @@ const routes = [
     name: "About",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
-      meta:{
-        requiresAuth:false, // Hakkında sayfası için authorization gerekli değil.
-      },
+    meta: {
+      requiresAuth: false, // Hakkında sayfası için authorization gerekli değil.
+    },
   },
   {
     path: "/dashboard",
@@ -45,13 +44,12 @@ const routes = [
     meta: {
       requiresAuth: false
     },
-    beforeEnter: (to, from, next) => {
-      const tokenValid = isLocalStorageTokenValid();
-      if (tokenValid) {
-        next("/continue-as");
-      } else {
-        next();
-      }
+  },
+  {
+    path: "/logout",
+    beforeEnter() {
+      localStorage.clear();
+      window.location.href = "/";
     }
   },
 ];
@@ -64,6 +62,7 @@ const router = new VueRouter({
 
 // uygulamadaki hareketlerde agentScally modülü vasıtasıyla authentication mekanizmasını devreye girecek
 router.beforeEach((to, from, next) => {
+  console.log("Before Each");
   agentScally(to, from, next);
 });
 

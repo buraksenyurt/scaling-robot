@@ -1,6 +1,6 @@
 const state = {
     signInState: {
-      email: "",
+      username: "",
       exp: Date.now(),
       sub: "",
       token: null

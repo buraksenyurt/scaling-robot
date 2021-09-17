@@ -45,7 +45,7 @@ export default {
   computed: {
     ...mapGetters("authModule", {
       isAuthenticated: "isAuthenticated",
-      email: "email",
+      username: "username",
     }),
   },
 };

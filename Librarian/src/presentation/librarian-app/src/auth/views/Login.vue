@@ -31,15 +31,15 @@
                   <v-row>
                     <v-col cols="12">
                       <v-text-field
-                        label="E-mail"
-                        v-model="login.email"
+                        label="Kullanıcı Adın"
+                        v-model="login.username"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12">
                       <v-text-field
                         type="password"
                         label="Şifre"
-                        hint="Şöyle güçlü bir şeyler gir"
+                        hint="Şöyle güçlü bir şifren olmalı"
                         counter
                         v-model="login.password"
                       ></v-text-field>
@@ -126,14 +126,14 @@ export default {
     dialog: true,
     tab: null,
     login: {
-      email: "",
+      username: "",
       password: "",
     },
   }),
   methods: {
-    ...mapActions("authModule", ["loginUser"]),
+    ...mapActions("authModule", ["loginUserAction"]),
     onSubmit() {
-      this.loginUser(this.login).then(() => {
+      this.loginUserAction(this.login).then(() => {
         this.$router.push({ path: "/dashboard" });
       });
     },

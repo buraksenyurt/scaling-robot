@@ -9,6 +9,8 @@ namespace Librarian.WebApi.Controllers
      * Authenticat fonksiyonu /auth talebi ile çalışır ve Body içeriği ile gelen model nesnesindeki kullanıcı adı şifre üstünden UserService'e gidilir.
      * Geçerli bir kullanıcı ise tamam ama değilse HTTP 400 Bad Request hatası basarız.
      */
+    [ApiController]
+    [Route("api/[controller]")]
     public class UserController
         : ControllerBase
     {

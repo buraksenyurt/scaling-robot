@@ -1,6 +1,6 @@
 const getters = {
-    email: state => {
-      return state.signInState.email;
+    username: state => {
+      return state.signInState.username;
     },
     isAuthenticated: state => {
       return state.signInState.token;
