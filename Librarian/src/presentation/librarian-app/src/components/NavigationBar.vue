@@ -1,5 +1,5 @@
 <template>
-<!--
+  <!--
     Menüyü oluşturuyoruz.
     Lobi yazan kısım bir button şeklinde ve root adrese yönlendiriyor.
 
@@ -19,10 +19,18 @@
         </v-btn>
       </router-link>
 
-      <v-btn color="primary" outlined :to="{ path: '/dashboard' }">
-        <span class="menu">Envanter Yönetimi</span>
+  <!--
+    authModule modülündeki isAuthenticated özelliğinin değerine göre dashboard görünecek aksi durumda login olunmasını isteyen bir vue button olacak.
+    -->
+      <v-btn
+        v-if="isAuthenticated"
+        color="primary"
+        outlined
+        :to="{ path: '/dashboard' }"
+      >
+        <span class="menu">Envanter</span>
       </v-btn>
-      <v-btn color="primary" outlined :to="{ path: '/login' }">
+      <v-btn v-else color="primary" outlined :to="{ path: '/login' }">
         <span class="menu">Giriş</span>
       </v-btn>
     </div>
@@ -30,8 +38,16 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "NavigationBar",
+  computed: {
+    ...mapGetters("authModule", {
+      isAuthenticated: "isAuthenticated",
+      email: "email",
+    }),
+  },
 };
 </script>
 
