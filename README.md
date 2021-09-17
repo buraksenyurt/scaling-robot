@@ -488,6 +488,37 @@ Bu işlemler sonrası Dashboard...
 
 ## Gün 11 - Vue Tarafında Authentication Mekanizmasının Uygulanması
 
+Servis tarafında geçici süreliğine Authorization kısmını kapatmıştık. Gerçek senaryoda ön yüzün servislerle konuşurken JWT Token'a ihtiyacı olacak. Dolayısıyla bir Authentication mekanizması da gerekiyor. Bu destek için yine store altındaki aktörlerle state tutarak hareket edilmiş ama öncesinde vue tarafında jwt kullanımı için bir kütüphane yüklenmesi gerekiyor.
+
+```bash
+npm i jsonwebtoken
+```
+
+Sonrasında yapılanlar şöyle;
+
+- root altında auth isimli klasör açıldı ve authService ile bodyguard modülleri eklendi.
+- Benzer şekilde store klasöründe auth isimli başka bir alt dizin açıldı.
+- store/auth dizineaction-types.js, actions.js, state.js, mutations.js, getters.js, index.js dosyaları eklendi. 
+- store altındaki index.js dosyasında authModule bildirimi yapıldı. 
+- Ayrıca middleware tarafında uygulama üzerindeki geçişlerde devreye girecek authentication modüle router altındaki index.js'e ilave edildi. Router tarafında kullanıcı doğrulamasına ihtiyacı olan yerler için gerekli meta tanımlamaları da yapıldı.
+- Login sayfası için root üstündeki auth klasörü altına views isimli yeni bir klasör açıldı ve içine Login.vue ile ContinueAs bileşenleri eklendi.
+- NavigationBar bileşeni değiştirildi ve dashboard kısmına geçilebilmesi için login olunma şartı eklendi.
+- Denemelerden önce Web API tarafında geçici olarak kaldırılan Authorize nitelikleri yeniden etkinleştirilmeli.
+
+![./Assets/screenshot_22.png](./Assets/screenshot_22.png)
+
+Tabii şu aşamada login başarılı olacak ancak örneğin kitap listesi gelmeyecek ve HTTP 401 Not Authorized hatası alınacaktır.
+
+![./Assets/screenshot_23.png](./Assets/screenshot_23.png)
+
+Nitekim henüz header tarafında bearer token bilgisini ekleyerek talep göndermedik. Bunun için,
+
+- authService modülüne getToken ve logOut fonksiyonları eklendi.
+- api klasörüne madMax.js isimli modül eklendi. Bu modül Interceptor görevini üstlenecek ve request'lerin header kısmına gerekli jwt token'ı ekleyecek fonksiyonelliği sunacak.
+- Interceptor'ü devreye almak için api-config.js içerisinde gerekli bildirim yapıldı.
+
+![./Assets/screenshot_24.png](./Assets/screenshot_24.png)
+
 ## Gün 12 - Validation Kontrollerinin Eklenmesi
 
 ## Gün 13 - Unit Test ile Entegrasyon Testlerinin Yazılması
