@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import BookList from "@/views/dashboard/BookList";
 import { agentScally } from "@/auth/bodyguard";
+import { isLocalStorageTokenValid } from "@/auth/authService";
 
 Vue.use(VueRouter);
 
@@ -17,10 +18,16 @@ const routes = [
     name: "About",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      meta:{
+        requiresAuth:false, // Hakkında sayfası için authorization gerekli değil.
+      },
   },
   {
     path: "/dashboard",
     component: () => import("@/views/dashboard"),
+    meta: {
+      requiresAuth: true // Artık dashboard tarafı için authorization istiyoruz
+    },
     children: [
       {
         path: "",
@@ -31,7 +38,22 @@ const routes = [
         component: BookList,
       }
     ],
-  }
+  },
+  {
+    path: "/login",
+    component: () => import("@/auth/views/Login"),
+    meta: {
+      requiresAuth: false
+    },
+    beforeEnter: (to, from, next) => {
+      const tokenValid = isLocalStorageTokenValid();
+      if (tokenValid) {
+        next("/continue-as");
+      } else {
+        next();
+      }
+    }
+  },
 ];
 
 const router = new VueRouter({
