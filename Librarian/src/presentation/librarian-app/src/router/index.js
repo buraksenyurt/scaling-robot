@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import BookList from "@/views/dashboard/BookList";
 import { agentScally } from "@/auth/bodyguard";
+import {isLocalStorageTokenValid} from "@/auth/authService";
 
 Vue.use(VueRouter);
 
@@ -40,10 +41,26 @@ const routes = [
   },
   {
     path: "/login",
-    component: () => import("@/auth/views/Login"),
+    component: () => import("@/auth/views/Login"),    
     meta: {
       requiresAuth: false
     },
+    beforeEnter: (to, from, next) => {
+      const valid = isLocalStorageTokenValid();
+      console.log("VALID::", valid);
+      if (valid) {
+        next("/continue-as");
+      } else {
+        next();
+      }
+    }
+  },
+  {
+    path: "/continue-as",
+    component: () => import("@/auth/views/ContinueAs"),
+    meta: {
+      requiresAuth: false
+    }
   },
   {
     path: "/logout",
