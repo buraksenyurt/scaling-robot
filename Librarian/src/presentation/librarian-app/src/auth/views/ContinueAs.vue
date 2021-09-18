@@ -11,15 +11,15 @@
 </template>
 
 <script>
-import { getUsernameFromToken, logOut } from "@/auth/auth.service";
+import { getUsernameFromToken, logout } from "@/auth/authService";
 export default {
   name: "ContinueAs",
-  data: () => ({
-    username: getUsernameFromToken()
+  data: () => ({      
+    username: getUsernameFromToken()    
   }),
   methods: {
     handleLogOut() {
-      logOut();
+      logout();
     },
     onSubmit() {
       this.$router.push({ path: "/dashboard" });

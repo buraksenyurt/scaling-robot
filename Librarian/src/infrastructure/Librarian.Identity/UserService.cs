@@ -57,7 +57,8 @@ namespace Librarian.Identity
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] {
-                    new Claim("userId", user.UserId.ToString())
+                    new Claim("userId", user.UserId.ToString()),
+                    new Claim("username",user.Username)
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

@@ -25,6 +25,11 @@ export function getUsernameFromToken() {
   
     const decoded = jwt.decode(token);
     console.log("Decoded:",decoded);
+    /* username bilgisini token içerisindeki claim set'ten alıyoruz. 
+    Yani Librarian.Idendity projesindeki UserService sınfının GenerateJwtToken metodundaki SecurityTokenDescriptor nesnesinin Subject özelliğinde
+    token ile istemciye aktarılmasını istediğimiz bilgiler varsa(username, email gibi) eklemeliyiz.
+    */
+    console.log("Username:",decoded.username);
     return decoded.username;
   }
 

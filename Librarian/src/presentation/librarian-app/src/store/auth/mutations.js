@@ -7,7 +7,12 @@ const mutations = {
         const loginClaim = jwt.decode(token);
         claimToState(state, loginClaim);
         localStorage.setItem("token", token);
-    }
+    },
+    [types.LOCAL_STORAGE_TOKEN_LOG_IN](state, token) {
+        state.signInState.token = token;
+        const loginClaim = jwt.decode(token);
+        claimToState(state, loginClaim);
+      }
 };
 
 export default mutations;
