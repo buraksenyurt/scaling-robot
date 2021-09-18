@@ -1,6 +1,8 @@
 import * as types from "./action-types";
 import {
-    loginUser
+    loginUser,
+    isLocalStorageTokenValid,
+    getToken
 } from "@/auth/authService";
 
 export async function loginUserAction({ commit }, payload) {
@@ -12,3 +14,11 @@ export async function loginUserAction({ commit }, payload) {
         console.log(e);
     }
 }
+
+export function useLocalTokenToLogInAction({ commit }) {
+    if (!isLocalStorageTokenValid()) {
+      return;
+    }  
+    const token = getToken();
+    commit(types.LOCAL_STORAGE_TOKEN_LOG_IN, token);
+  }
