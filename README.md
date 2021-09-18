@@ -519,6 +519,18 @@ Nitekim henüz header tarafında bearer token bilgisini ekleyerek talep gönderm
 
 ![./Assets/screenshot_24.png](./Assets/screenshot_24.png)
 
+Login ve logout işlemleri tamam ve sırada autologin özelliğinin entegrasyonu var. Yani local storage'e konan token bilgisi zaten varsa bunun geçerli olup olmadığını kontrol etmek ve geçerli ise kullanıcıyı kabul edip uygulamada gezinmesine izin vermek.
+
+- authService modülüne isLocalStorageTokenValid ve getUsernameFromToken fonksiyonları eklendi.
+- router altındaki index modülünde yer alan login router'u için beforeEnter isimli bir kontrol _(kitapta guard hook diye geçiyor)_ eklendi. Ayrıca continue-as isimli yeni bir route eklendi. local token geçerli ise next çağrısı ile bu route'a yönleniliyor olacak.
+- actionTypes'a yeni aksiyon tipi eklendi ve actions modülünde local storage kontrolüne göre çalışan bir fonksiyon yazıldı. Tabii action tipi mutations kısmına da dahil edildi.
+- bodyguard servisine local storage'da token olup olmadığını kontrol eden kod parçası eklendi.
+- ContinueAs isimli vue bileşeni eklendi. dashboard klasöründeki index sayfası düzenlendi.
+
+![./Assets/screenshot_24.png](./Assets/screenshot_25.png)
+
+![./Assets/screenshot_24.png](./Assets/screenshot_26.png)
+
 ## Gün 12 - Validation Kontrollerinin Eklenmesi
 
 ## Gün 13 - Unit Test ile Entegrasyon Testlerinin Yazılması
