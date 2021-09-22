@@ -17,7 +17,7 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 - [x] Gün 08 - Cache Yapısının Kurgulanması ve Redis Entegrasyonu
 - [x] Gün 09 - JWT Bazlı Güvenlik Politikasının Eklenmesi
 - [x] Gün 10 - Önyüz Uygulamasının Vue.js ile Geliştirilmesi
-- [ ] Gün 11 - Vue Tarafında Authentication Mekanizmasının Uygulanması
+- [x] Gün 11 - Vue Tarafında Authentication Mekanizmasının Uygulanması
 - [ ] Gün 12 - Validation Kontrollerinin Eklenmesi
 - [ ] Gün 13 - Unit Test ile Entegrasyon Testlerinin Yazılması
 - [ ] Gün 14 - Deployment
@@ -527,11 +527,28 @@ Login ve logout işlemleri tamam ve sırada autologin özelliğinin entegrasyonu
 - bodyguard servisine local storage'da token olup olmadığını kontrol eden kod parçası eklendi.
 - ContinueAs isimli vue bileşeni eklendi. dashboard klasöründeki index sayfası düzenlendi.
 
-![./Assets/screenshot_24.png](./Assets/screenshot_25.png)
+![./Assets/screenshot_25.png](./Assets/screenshot_25.png)
 
-![./Assets/screenshot_24.png](./Assets/screenshot_26.png)
+![./Assets/screenshot_26.png](./Assets/screenshot_26.png)
 
 ## Gün 12 - Validation Kontrollerinin Eklenmesi
+
+Kütüphane için erişim yetkisi olacak kişi oluşturmak amacıyla bir formum var. Girdilerin bir takım kontrollerden geçmesi lazım. Vue tarafında bu işi kolaylaştırması adına vuelidate paketinden yararlanabileceğiz.
+
+```bash
+# librarian-app altında çalıştırabiliriz
+npm i vuelidate
+```
+
+- Var olan plugins klasörü altında vuelidate.js isimli bir dosya oluşturuldu.
+- Projede vuelidate paketine ait fonksiyonları kullanabilmek için gerekli bildirim main.js içinde yapıldı.
+- src dizininde validators isimli bir klasör açıldı ve içinde index.js eklendi.
+
+Login kısmı için aşağıdakine benzer bir sonuç elde edildi.
+
+![./Assets/screenshot_27.png](./Assets/screenshot_27.png)
+
+_Yeni kullanıcı eklme kısmı da yapılacak_
 
 ## Gün 13 - Unit Test ile Entegrasyon Testlerinin Yazılması
 
