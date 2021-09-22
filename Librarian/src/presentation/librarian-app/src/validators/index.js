@@ -7,8 +7,12 @@ import {
 
 export default {
     login: {
-        email: { required, email },
+        username: { required, minLength: minLength(5), maxLength: maxLength(20) },
         password: { required, minLength: minLength(8), maxLength: maxLength(20) }
+    },
+    email: {
+        required,
+        email
     },
     firstName: {
         required,
