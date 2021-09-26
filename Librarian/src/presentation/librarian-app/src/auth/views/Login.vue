@@ -59,31 +59,56 @@
                                     <v-row>
                                         <v-col cols="12" sm="6" md="6">
                                             <v-text-field label="Adın"
+                                                          v-model="register.firstname"
+                                                          @input="$v.register.firstname.$touch()"
+                                                          @blur="$v.register.firstname.$touch()"
+                                                          :error-messages="registerFirstnameErrors"
                                                           maxlength="20"
+                                                          minlength="3"
                                                           required></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="6">
                                             <v-text-field label="Soyadın"
+                                                          v-model="register.surname"
+                                                          @input="$v.register.surname.$touch()"
+                                                          @blur="$v.register.surname.$touch()"
+                                                          :error-messages="registerSurnameErrors"
                                                           maxlength="20"
+                                                          minlength="3"
                                                           required></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="6">
                                             <v-text-field label="Birde kullanıcı adın ;)"
+                                                          v-model="register.username"
+                                                          @input="$v.register.username.$touch()"
+                                                          @blur="$v.register.username.$touch()"
+                                                          :error-messages="registerUsernameErrors"
                                                           maxlength="20"
                                                           required></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
                                             <v-text-field label="E-Posta Adresin"
+                                                          @input="$v.register.email.$touch()"
+                                                          @blur="$v.register.email.$touch()"
+                                                          :error-messages="registerEmailErrors"
                                                           required></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
                                             <v-text-field label="Şifre"
                                                           hint="Şöyle kuvvetli bir şifre belirlesek ya."
+                                                          v-model="register.password"
+                                                          @input="$v.register.password.$touch()"
+                                                          @blur="$v.register.password.$touch()"
+                                                          :error-messages="registerPasswordErrors"
                                                           counter></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
                                             <v-text-field block
                                                           label="Şifre(Yeniden)"
+                                                          v-model="register.passwordagain"
+                                                          @input="$v.register.passwordagain.$touch()"
+                                                          @blur="$v.register.passwordagain.$touch()"
+                                                          :error-messages="registerPasswordErrors"
                                                           counter></v-text-field>
                                         </v-col>
                                         <v-spacer></v-spacer>
@@ -114,6 +139,14 @@
                 username: "",
                 password: "",
             },
+            register: {
+                firstname: "",
+                surname: "",
+                email: "",
+                username: "",
+                password: "",
+                passwordagain: ""
+            }
         }),
         methods: {
             ...mapActions("authModule", ["loginUserAction"]),
@@ -146,10 +179,65 @@
                 !this.$v.login.password.maxLength &&
                     errors.push("Paranoyak olma. En fazla 20 karakter.");
                 return errors;
-            }
+            },
+            registerEmailErrors() {
+                const errors = [];
+                if (!this.$v.register.email.$dirty) return errors;
+                !this.$v.register.email.email && errors.push("Beni kandırma. Düzgün bir e-posta gir.");
+                !this.$v.register.email.required && errors.push("e-posta girilmesi lazım");
+                return errors;
+            },
+            registerFirstnameErrors() {
+                const errors = [];
+                if (!this.$v.register.firstname.$dirty) return errors;
+                !this.$v.register.firstname.minLength &&
+                    errors.push("En az 3 karakter olmalıydı.");
+                !this.$v.register.firstname.maxLength &&
+                    errors.push("Paranoyak olma. En fazla 20 karakter.");
+                !this.$v.register.firstname.required && errors.push("Lütfen adınızı giriniz");
+                return errors;
+            },
+            registerSurnameErrors() {
+                const errors = [];
+                if (!this.$v.register.surname.$dirty) return errors;
+                !this.$v.register.surname.minLength &&
+                    errors.push("En az 3 karakter olmalıydı.");
+                !this.$v.register.surname.maxLength &&
+                    errors.push("Paranoyak olma. En fazla 20 karakter.");
+                !this.$v.register.surname.required && errors.push("Lütfen soyadınızı giriniz");
+                return errors;
+            },
+            registerUsernameErrors() {
+                const errors = [];
+                if (!this.$v.register.username.$dirty) return errors;
+                !this.$v.register.username.minLength &&
+                    errors.push("En az 5 karakter olmalıydı.");
+                !this.$v.register.username.maxLength &&
+                    errors.push("Paranoyak olma. En fazla 20 karakter.");
+                !this.$v.register.username.required && errors.push("Lütfen kullanıcı adınızı giriniz");
+                return errors;
+            },
+            registerPasswordErrors() {
+                const errors = [];
+                if (!this.$v.register.password.$dirty) return errors;
+                !this.$v.register.password.required && errors.push("Şifre girilmeli");
+                !this.$v.register.password.minLength &&
+                    errors.push("En az 8 karakter olsun");
+                !this.$v.register.password.maxLength &&
+                    errors.push("Paranoyak olma. En fazla 20 karakter.");
+                return errors;
+            },
         },
         validations: {
-            login: validators.login
+            login: validators.login,
+            register: {
+                firstname: validators.newuser.firstName,
+                surname: validators.newuser.surName,
+                email: validators.newuser.email,
+                username: validators.newuser.username,
+                password: validators.newuser.password,
+                passwordagain: validators.newuser.passwordagain
+            }
         }
     };
 </script>
