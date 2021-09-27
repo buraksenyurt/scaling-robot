@@ -1,0 +1,24 @@
+﻿version: "3.7"
+
+services:
+ mssql:
+    image: "mcr.microsoft.com/mssql/server"
+    container_name: MS_SQL_Server
+    restart: always
+    environment:
+      MSSQL_SA_PASSWORD : "P@ssw0rd"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - mssql-data:/var/opt/mssql
+    ports:
+      - 1433:1433
+    networks:
+          - dev
+          
+volumes:
+  mssql-data:
+    driver: local
+
+networks:
+  dev:
+    driver: bridge

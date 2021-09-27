@@ -17,8 +17,12 @@ namespace Librarian.Data
     {
         public static IServiceCollection AddData(this IServiceCollection services,IConfiguration configuration)
         {
+            //services.AddDbContext<LibrarianDbContext>(
+            //    options => options.UseSqlite(configuration.GetConnectionString("LibrarianDbConnection")) // SQLite veri tabanı bağlantı bilgisi konfigurasyon üstünden gelecek. Web API' nin appSettings.json dosyasından
+            //    );
+
             services.AddDbContext<LibrarianDbContext>(
-                options => options.UseSqlite(configuration.GetConnectionString("LibrarianDbConnection")) // SQLite veri tabanı bağlantı bilgisi konfigurasyon üstünden gelecek. Web API' nin appSettings.json dosyasından
+                options => options.UseSqlServer(configuration.GetConnectionString("LibrarianDbConnection"))
                 );
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<LibrarianDbContext>());
