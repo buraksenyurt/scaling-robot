@@ -18,9 +18,10 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 - [x] Gün 09 - JWT Bazlı Güvenlik Politikasının Eklenmesi
 - [x] Gün 10 - Önyüz Uygulamasının Vue.js ile Geliştirilmesi
 - [x] Gün 11 - Vue Tarafında Authentication Mekanizmasının Uygulanması
-- [ ] Gün 12 - Validation Kontrollerinin Eklenmesi
-- [ ] Gün 13 - Unit Test ile Entegrasyon Testlerinin Yazılması
-- [ ] Gün 14 - Deployment
+- [x] Gün 12 - Validation Kontrollerinin Eklenmesi
+- [ ] Gün 13 - SQL Server Göçü
+- [ ] Gün 14 - Unit Test ile Entegrasyon Testlerinin Yazılması
+- [ ] Gün 15 - Deployment
 
 ## Çalışma Logları
 
@@ -552,8 +553,38 @@ Login kısmı için aşağıdakine benzer bir sonuç elde edildi.
 
 ![./Assets/screenshot_29.png](./Assets/screenshot_29.png)
 
+Bu da yeni kitap eklerken doğrulama hataları oluşursa elde edilen sonuç. Yine de henüz çözemediğim sorunlar var. email kontrolü düzgün çalışmıyor ve Login popup'ındaki username ile password alanları yeni kullanıcı ekleme kısmındaki kontrollere de bağlanmış görünüyor.
+
 ![./Assets/screenshot_28.png](./Assets/screenshot_28.png)
 
-## Gün 13 - Unit Test ile Entegrasyon Testlerinin Yazılması
+## Gün 13 - SQL Server Göçü
 
-## Gün 14 - Deployment
+Kitabın bu bölümünde entegrasyon testleri için SQL Server'a geçiş tercih ediliyor. Docker imajını kullanmayı tercih ettim. Bu amaçla Librarian.Data projesinde bir bir docker-compose.yaml dosyası oluşturuldu.
+
+```bash
+#aynı klasörde
+docker-compose up
+```
+
+![./Assets/screenshot_30.png](./Assets/screenshot_30.png)
+
+- Veritabanı bağlantısı için WebApi projesinin appSettings dosyasına yeni değer eklendi.
+- Librarian.Data projesine Microsoft.EntityFrameworkCore.SqlServer paketi eklendi.
+
+```bash
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+```
+
+- Librarian.Data projesindeki DependencyInjection sınıfı SqlServer kullanacak şekilde değiştirildi.
+- Artık veriyi SQL Server tarafında oluşturmamız gerektiğinden yeni bir migration plana ihtiyacımız var. Var olan Migration klasörü silindi ve yeni plan çalıştırıldı.
+
+```bash
+dotnet ef migrations add InitialCreate --startup-project ..\..\presentation\Librarian.WebApi
+dotnet ef database update --startup-project ..\..\presentation\Librarian.WebApi
+```
+
+___Devam Edecek...___
+
+## Gün 14 - Unit Test ile Entegrasyon Testlerinin Yazılması
+
+## Gün 15 - Deployment
