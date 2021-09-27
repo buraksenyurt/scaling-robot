@@ -15,7 +15,7 @@
             <v-card>
                 <form @submit.prevent="
             addBookAction(body);
-            bodyRequest = {};
+            body = {};
           ">
                     <v-card-title>
                         <span class="headline">Kitap Bilgileri</span>
@@ -26,16 +26,25 @@
                                 <v-col cols="12" sm="6">
                                     <v-text-field label="Adı"
                                                   v-model="body.title"
+                                                  @input="$v.body.title.$touch()"
+                                                  @blur="$v.body.title.$touch()"
+                                                  :error-messages="titleErrors"
                                                   required></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="6">
                                     <v-text-field label="Yayıncı"
                                                   v-model="body.publisher"
+                                                  @input="$v.body.publisher.$touch()"
+                                                  @blur="$v.body.publisher.$touch()"
+                                                  :error-messages="publisherErrors"
                                                   required></v-text-field>
                                 </v-col>
                                 <v-col cols="12">
                                     <v-textarea label="Yazarları"
                                                 v-model="body.authors"
+                                                @input="$v.body.authors.$touch()"
+                                                @blur="$v.body.authors.$touch()"
+                                                :error-messages="authorsErrors"
                                                 required></v-textarea>
                                 </v-col>
 
@@ -79,6 +88,7 @@
                         <v-btn color="blue darken-1"
                                text
                                @click="dialog = false"
+                               :disabled="$v.$anyError"
                                type="submit">
                             Save
                         </v-btn>
@@ -91,6 +101,7 @@
 
 <script>
     import { mapActions } from "vuex";
+    import validators from "@/validators";
     export default {
         name: "AddBookForm",
         data: () => ({
@@ -112,5 +123,44 @@
         methods: {
             ...mapActions("bookModule", ["addBookAction"]),
         },
+        computed: {
+            titleErrors() {
+                const errors = [];
+                if (!this.$v.body.title.$dirty)
+                    return errors;
+
+                !this.$v.body.title.required && errors.push("Lütfen kitabın adını yaz.");
+                !this.$v.body.title.maxLength && errors.push("En fazla 50 karakter.");
+
+                return errors;
+            },
+            publisherErrors() {
+                const errors = [];
+                if (!this.$v.body.publisher.$dirty) return errors;
+
+                !this.$v.body.publisher.required && errors.push("Lütfen yayıncının adını yaz.");
+                !this.$v.body.publisher.minLength && errors.push("En az 5 karakter olsun");
+                !this.$v.body.publisher.maxLength && errors.push("En fazla 50 karakter.");
+
+                return errors;
+            },
+            authorsErrors() {
+                const errors = [];
+                if (!this.$v.body.authors.$dirty) return errors;
+
+                !this.$v.body.authors.required && errors.push("Lütfen yazarların adını yaz.");
+                !this.$v.body.authors.minLength && errors.push("En az 10 karakter olsun");
+                !this.$v.body.authors.maxLength && errors.push("En fazla 200 karakter.");
+
+                return errors;
+            },
+        },
+        validations: {
+            body: {
+                title: validators.addbook.title,
+                publisher: validators.addbook.publisher,
+                authors: validators.addbook.authors
+            }
+        }
     };
 </script>

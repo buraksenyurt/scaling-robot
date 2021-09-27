@@ -95,6 +95,7 @@
                                         </v-col>
                                         <v-col cols="12">
                                             <v-text-field label="Şifre"
+                                                          type="password"
                                                           hint="Şöyle kuvvetli bir şifre belirlesek ya."
                                                           v-model="register.password"
                                                           @input="$v.register.password.$touch()"
@@ -105,6 +106,7 @@
                                         <v-col cols="12">
                                             <v-text-field block
                                                           label="Şifre(Yeniden)"
+                                                          type="password"
                                                           v-model="register.passwordagain"
                                                           @input="$v.register.passwordagain.$touch()"
                                                           @blur="$v.register.passwordagain.$touch()"
@@ -113,7 +115,7 @@
                                         </v-col>
                                         <v-spacer></v-spacer>
                                         <v-col class="d-flex ml-auto" cols="12" sm="3" xsm="12">
-                                            <v-btn :disabled="false" color="primary">Kaydol</v-btn>
+                                            <v-btn :disabled="$v.$anyError" color="primary">Kaydol</v-btn>
                                         </v-col>
                                     </v-row>
                                 </div>
