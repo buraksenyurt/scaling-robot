@@ -543,12 +543,16 @@ npm i vuelidate
 - Var olan plugins klasörü altında vuelidate.js isimli bir dosya oluşturuldu.
 - Projede vuelidate paketine ait fonksiyonları kullanabilmek için gerekli bildirim main.js içinde yapıldı.
 - src dizininde validators isimli bir klasör açıldı ve içinde index.js eklendi.
+- auth/views altındaki Login bileşeninde doğrulama kontrollerinin kullanılması için değişikliler yapıldı. _computed ve validations fonksiyonlarındaki tanımlamalar ile kontrolleri v-model, input, blur error_messages özelliklerine dikkat_
+- Yeni bir kitabın eklendiği form içinde vuelidate entegrasyonu yapıldı. _Epey uğraştırdı. data ve validations içerisindeki veri tiplerinin aynı isimde olmasına dikkat. Ayrıca button'ları sayfada validasyon hatası varsa engellemek için :disabled="$v.$anyError" kullanıldı_
 
 Login kısmı için aşağıdakine benzer bir sonuç elde edildi.
 
 ![./Assets/screenshot_27.png](./Assets/screenshot_27.png)
 
-_Yeni kullanıcı eklme kısmı da yapılacak_
+![./Assets/screenshot_29.png](./Assets/screenshot_29.png)
+
+![./Assets/screenshot_28.png](./Assets/screenshot_28.png)
 
 ## Gün 13 - Unit Test ile Entegrasyon Testlerinin Yazılması
 
