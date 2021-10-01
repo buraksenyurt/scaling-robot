@@ -19,7 +19,7 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 - [x] Gün 10 - Önyüz Uygulamasının Vue.js ile Geliştirilmesi
 - [x] Gün 11 - Vue Tarafında Authentication Mekanizmasının Uygulanması
 - [x] Gün 12 - Validation Kontrollerinin Eklenmesi
-- [ ] Gün 13 - SQL Server Göçü
+- [x] Gün 13 - SQL Server Göçü
 - [ ] Gün 14 - Unit Test ile Entegrasyon Testlerinin Yazılması
 - [ ] Gün 15 - Deployment
 
@@ -583,8 +583,53 @@ dotnet ef migrations add InitialCreate --startup-project ..\..\presentation\Libr
 dotnet ef database update --startup-project ..\..\presentation\Librarian.WebApi
 ```
 
-___Devam Edecek...___
+SQLite'ı terk edip SQL Server'a göç ettiğimiz için verileri de uçurmuş olduk. Seeding tekniği ile örnek verileri ekleyebiliriz.
+
+- Librarian.Data projoesindeki Contexts klasörüne LibrarianDbContextSeed sınıfı eklendi.
+- WebApi projesindeki program.cs Seed fonksiyonunu kullanacak şekilde düzenlendi.
+
+Bu işlem sonrasında uygulama yeniden başlatıldığında SQL Server'a örnek verilerin eklendiğinin görülmüş olması lazım. _(SQL Server Docker Container'ının çalıştığından emin olun)_
 
 ## Gün 14 - Unit Test ile Entegrasyon Testlerinin Yazılması
+
+Test fonksiyonları için xUnit kullanılıyor. Birim ve entegrasyon testleri için src klasörü ile aynı seviyede yer alan tests isimli yeni bir dizin kullanılıyor. Bu klasörde terminal üstünden yapılanlar,
+
+```bash
+# Entegrasyon testlerini WebApi projesindeki fonksiyonellikler için tasarlayacağız.
+
+# xunit odaklı entegrasyon testleri için bir proje oluşturulur
+dotnet new xunit --name Librarian.IntegrationTests
+cd Librarian.IntegrationTests
+
+# WebApi projesi referans edilir
+dotnet add reference ..\..\src\presentation\Librarian.WebApi\Librarian.WebApi.csproj
+
+# Ardından kabul kriterlerini yazmakta kullanılan FluentAssertions, mocking için Moq ve test veritabanını temiz bir konuma çekmek için Respawn isimli nuget paketleri eklenir.
+dotnet add package FluentAssertions
+dotnet add package Moq
+dotnet add package Respawn
+
+# Birim testleri ise core katmanındaki application projesindeki fonksiyonlar için yazacağız.
+# Bunun için Librarian.UnitTests isimli yeni bir proje açılır. Yine tests klasörü altında.
+cd ..
+dotnet new xunit --name Librarian.UnitTests
+cd Librarian.UnitTests
+# Birim testler için Librarian.Application projesi referans edilir.
+dotnet add reference ..\..\src\core\Librarian.Application\Librarian.Application.csproj
+# Kabul kriterlerini şık bir stilde yazmak için yine FluentAssertions paketini kullanacağız
+dotnet add package FluentAssertions
+
+# root klasöre çıkıp solution'a bu projeleri ekliyoruz.
+cd ..
+cd ..
+dotnet sln add tests\Librarian.IntegrationTests\Librarian.IntegrationTests.csproj
+dotnet sln add tests\Librarian.UnitTests\Librarian.UnitTests.csproj
+```
+
+Sonuçta aşağıdaki gibi bir çıktı oluşmalı.
+
+![./Assets/screenshot_31.png](./Assets/screenshot_31.png)
+
+___Devam Edecek___
 
 ## Gün 15 - Deployment
