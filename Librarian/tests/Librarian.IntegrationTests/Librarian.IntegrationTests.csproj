@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Books\Commands\" />
     <Folder Include="Books\Queries\" />
   </ItemGroup>
 

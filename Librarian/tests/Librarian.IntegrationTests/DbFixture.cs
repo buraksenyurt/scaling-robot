@@ -73,7 +73,15 @@ namespace Librarian.IntegrationTests
         // Respawn ile gelen Checkpoint nesnesi yardımıyla konfigurasyondaki veritabanı bağlantısı için bu işlem gerçeklenir.
         public static async Task ResetState()
         {
-            await _checkpoint.Reset(_configuration.GetConnectionString("DefaultConnection"));
+            await _checkpoint.Reset(_configuration.GetConnectionString("LibrarianDbConnection"));
+        }
+
+        public static async Task<TEntity> FindAsync<TEntity>(int id)
+            where TEntity : class
+        {
+            using var scope = _scopeFactory.CreateScope();
+            var context = scope.ServiceProvider.GetService<LibrarianDbContext>();
+            return await context.FindAsync<TEntity>(id);
         }
 
         public void Dispose()
