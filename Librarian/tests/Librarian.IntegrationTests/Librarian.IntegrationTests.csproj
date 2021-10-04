@@ -26,4 +26,9 @@
     <ProjectReference Include="..\..\src\presentation\Librarian.WebApi\Librarian.WebApi.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Books\Commands\" />
+    <Folder Include="Books\Queries\" />
+  </ItemGroup>
+
 </Project>
