@@ -630,6 +630,11 @@ Sonuçta aşağıdaki gibi bir çıktı oluşmalı.
 
 ![./Assets/screenshot_31.png](./Assets/screenshot_31.png)
 
+Kitap birim test örnekleri için ValidationException ve AutoMapper tiplerinin olduğu senaryoları ele almış.
+
+- Librarian.UnitTests projesinde Common isimli bir klasör açılır. _(core katmanındaki Application projesindeki Common klasörüne karşılık. Yani test tarafında da benzer klasör yapısı oluşturulur)_ Exceptions ve Mappings isimli iki klasör daha açılır.
+- Book tipinden BookDTO'ya dönüşümü test eden MappingTests sınıfı eklendi.
+
 ___Devam Edecek___
 
 ## Gün 15 - Deployment
