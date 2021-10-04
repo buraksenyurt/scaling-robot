@@ -634,6 +634,11 @@ Kitap birim test örnekleri için ValidationException ve AutoMapper tiplerinin o
 
 - Librarian.UnitTests projesinde Common isimli bir klasör açılır. _(core katmanındaki Application projesindeki Common klasörüne karşılık. Yani test tarafında da benzer klasör yapısı oluşturulur)_ Exceptions ve Mappings isimli iki klasör daha açılır.
 - Book tipinden BookDTO'ya dönüşümü test eden MappingTests sınıfı eklendi.
+- Exceptions klasörü altına ValidationException tipi için iki basit test içeren ValidationExceptionTests sınıfı eklendi.
+
+Birim testleri test projesinin komut satırından _dotnet test_ ile veya Visual Studio arabirimindeki Test Explorer yardımıyla çalıştırabiliriz.
+
+![./Assets/screenshot_32.png](./Assets/screenshot_32.png)
 
 ___Devam Edecek___
 

@@ -24,8 +24,4 @@
     <ProjectReference Include="..\..\src\core\Librarian.Application\Librarian.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\Exceptions\" />
-  </ItemGroup>
-
 </Project>
