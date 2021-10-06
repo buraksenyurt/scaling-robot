@@ -648,6 +648,10 @@ Birim testler genellikle veri tabanı, servis, dosya girdi çıktı işlemleri, 
 - Books isimli bir dizin oluşturuldu ve altına Commands ve Queries isimli iki alt klasör eklendi. Tam da core katmanı, Apllication projesindeki klasör hiyerarşisine uygun olacak şekilde. 
 - CreateBookTests, UpdateBookTests, DeleteBookTests ve GetBooksTests sınıfları eklendi.
 
+Kitabın da belirttiği sonuçların benzerlerini elde etmeyi başardım.
+
+![./Assets/screenshot_33.png](./Assets/screenshot_33.png)
+
 ## Gün 15 - Deployment
 
 ___Devam Edecek___
