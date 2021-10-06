@@ -646,7 +646,7 @@ Birim testler genellikle veri tabanı, servis, dosya girdi çıktı işlemleri, 
 - DbFixture isimli sınıf eklendi. Test çalışma zamanı için gerekli ortam hazırlıklarını üstlenir _(Web Host ortamının mock'lanması, DI servis yapısının hazırlanması, scope oluşturulması gibi)_ ve bazı statik fonksiyonellikler _(Db'ye nesne ekleme, Mediator'a mesaj gönderme gibi)_ sağlar.
 - Tüm testlerin DbFixture'u zahmetsizce kullanması için DbCollection sınıfı eklendi.
 - Books isimli bir dizin oluşturuldu ve altına Commands ve Queries isimli iki alt klasör eklendi. Tam da core katmanı, Apllication projesindeki klasör hiyerarşisine uygun olacak şekilde. 
-- CreateBookTests sınıfı eklendi.
+- CreateBookTests, UpdateBookTests sınıfları eklendi.
 
 ___Devam Edecek___
 
