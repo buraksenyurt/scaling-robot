@@ -20,7 +20,7 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 - [x] Gün 11 - Vue Tarafında Authentication Mekanizmasının Uygulanması
 - [x] Gün 12 - Validation Kontrollerinin Eklenmesi
 - [x] Gün 13 - SQL Server Göçü
-- [ ] Gün 14 - Unit Test ile Entegrasyon Testlerinin Yazılması
+- [x] Gün 14 - Unit Test ile Entegrasyon Testlerinin Yazılması
 - [ ] Gün 15 - Deployment
 
 ## Çalışma Logları
@@ -646,8 +646,8 @@ Birim testler genellikle veri tabanı, servis, dosya girdi çıktı işlemleri, 
 - DbFixture isimli sınıf eklendi. Test çalışma zamanı için gerekli ortam hazırlıklarını üstlenir _(Web Host ortamının mock'lanması, DI servis yapısının hazırlanması, scope oluşturulması gibi)_ ve bazı statik fonksiyonellikler _(Db'ye nesne ekleme, Mediator'a mesaj gönderme gibi)_ sağlar.
 - Tüm testlerin DbFixture'u zahmetsizce kullanması için DbCollection sınıfı eklendi.
 - Books isimli bir dizin oluşturuldu ve altına Commands ve Queries isimli iki alt klasör eklendi. Tam da core katmanı, Apllication projesindeki klasör hiyerarşisine uygun olacak şekilde. 
-- CreateBookTests, UpdateBookTests, DeleteBookTests sınıfları eklendi.
-
-___Devam Edecek___
+- CreateBookTests, UpdateBookTests, DeleteBookTests ve GetBooksTests sınıfları eklendi.
 
 ## Gün 15 - Deployment
+
+___Devam Edecek___
