@@ -2,7 +2,7 @@
 
 Clean Architecture'ın basit uygulamalı bir örneğini yapmaya çalışacağım. Asp.Net Core üstünde ilerlemeyi düşünüyorum. .Net 5 tabanlı olmasına özen göstereceğim. Frontend tarafta React veya Vue.Js kullanabilirim. Fikir olarak çok sıradan ama bilindik bir senaryo üstünde ilerleyebilirim. Çalışma odamdaki kitapların sayısı arttı ve hangi kitap hangi rafta bulmakta zorlanıyorum. Kitaplığımı kayıt altına alacağım basit bir uygulama geliştirebilirim. Scaling-Robot isminin kitaplıkla bir ilgisi yok. Github önerdi, hoşuma gitti ;)
 
-__Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, full-stack applications using vue.js 3, Typescript, .NET 5, and Azure, Devlin Basilan Duldulao, Packt__
+__Takip edilen kaynak : [Asp.Net Core and Vue.js, Build read-world, scalable, full-stack applications using vue.js 3, Typescript, .NET 5, and Azure, Devlin Basilan Duldulao, Packt](https://www.amazon.com.tr/ASP-NET-Core-Vue-js-real-world-applications/dp/1800206690)__
 
 ## Taslak Plan
 
@@ -21,7 +21,6 @@ __Takip edilen kaynak : Asp.Net Core and Vue.js, Build read-world, scalable, ful
 - [x] Gün 12 - Validation Kontrollerinin Eklenmesi
 - [x] Gün 13 - SQL Server Göçü
 - [x] Gün 14 - Unit Test ile Entegrasyon Testlerinin Yazılması
-- [ ] Gün 15 - Deployment
 
 ## Çalışma Logları
 
@@ -651,7 +650,3 @@ Birim testler genellikle veri tabanı, servis, dosya girdi çıktı işlemleri, 
 Kitabın da belirttiği sonuçların benzerlerini elde etmeyi başardım.
 
 ![./Assets/screenshot_33.png](./Assets/screenshot_33.png)
-
-## Gün 15 - Deployment
-
-___Devam Edecek___
